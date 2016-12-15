@@ -6,8 +6,6 @@ require('sinatra/activerecord')
 
 RSpec.configure do |config|
   config.after(:each) do
-    # Project.all().each() do |project|
-    #   project.destroy()
-    # end
+    # Project.all.each(&:destroy)
   end
 end
