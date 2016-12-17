@@ -1,6 +1,6 @@
 # _Project_
 
-#### By _**Kenneth Black**, MM/DD/YYYY_
+#### By _**Andrew Accuard, **, MM/DD/YYYY_
 
 ## Description
 
@@ -14,9 +14,9 @@
 
 ## Setup/Installation Requirements
 
-* Clone this repo: `git clone git@github.com:lawlietblack/{repo}.git`
+* Clone this repo: `git clone git@github.com:{user}/{repo}.git`
 * Change to the repo directory: `cd {repo}`
-* Install gems: `bundle install --path vendor/bundle`
+* Install gems: `bundle install`
 * Install the database: *instruction below*
 * Run the app: `ruby app.rb`
 
@@ -35,4 +35,4 @@ _Ruby, Sinatra, SQL, Postgres, JavaScript, MaterializeCSS, jQuery_
 
 *MIT License*
 
-Copyright (c) 2016 **_Kenneth Black_**
+Copyright (c) 2016 **_Andrew Accuardi, _**
