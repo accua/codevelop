@@ -1,4 +1,4 @@
-require('capybara/rspec')
-require('./app')
+require 'capybara/rspec'
+require './app'
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)

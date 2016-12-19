@@ -1,12 +1,14 @@
-source('https://rubygems.org')
+source 'https://rubygems.org'
 
-gem('sinatra')
-gem('sinatra-contrib')
-gem('rspec')
-gem('capybara')
-gem('pry')
-gem('launchy')
-gem('pg')
-gem('sinatra-activerecord')
-gem('rake')
-gem("shoulda-matchers", '~> 2.0')
+gem 'sinatra-contrib', :require => 'sinatra/reloader'
+gem 'sinatra-activerecord'
+gem 'rake'
+gem 'pg'
+gem 'sinatra'
+gem 'pry'
+
+group(:test) do
+  gem 'rspec'
+  gem 'capybara'
+  gem 'shoulda-matchers', '~>2.0'
+end
