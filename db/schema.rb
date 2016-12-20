@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220000109) do
+ActiveRecord::Schema.define(version: 20161220011206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,14 +65,6 @@ ActiveRecord::Schema.define(version: 20161220000109) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts_teams", force: :cascade do |t|
-    t.integer  "team_id"
-    t.integer  "post_id"
-    t.integer  "posted_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "posts_users", force: :cascade do |t|
     t.integer  "post_id"
     t.integer  "user_id"
@@ -92,6 +84,14 @@ ActiveRecord::Schema.define(version: 20161220000109) do
     t.integer  "team_id"
     t.integer  "message_id"
     t.integer  "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "team_posts", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "post_id"
+    t.integer  "posted_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
