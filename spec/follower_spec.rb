@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-describe Comment do
-  it { should belong_to :post }
+describe Follower do
   it { should belong_to :user }
 end

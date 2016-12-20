@@ -1,3 +1,3 @@
 class Language < ActiveRecord::Base
-  has_many :users, through: :language_skills
+  has_and_belongs_to_many :users, through: :skills
 end

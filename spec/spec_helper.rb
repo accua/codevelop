@@ -15,9 +15,9 @@ RSpec.configure do |config|
     User.all.each(&:destroy)
     Team.all.each(&:destroy)
     Message.all.each(&:destroy)
-    Posts.all.each(&:destroy)
-    Comments.all.each(&:destroy)
-    Followers.all.each(&:destroy)
+    Post.all.each(&:destroy)
+    Comment.all.each(&:destroy)
+    Follower.all.each(&:destroy)
     Following.all.each(&:destroy)
     Language.all.each(&:destroy)
   end

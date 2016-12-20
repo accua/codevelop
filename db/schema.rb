@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219210716) do
+ActiveRecord::Schema.define(version: 20161220000109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,29 +18,23 @@ ActiveRecord::Schema.define(version: 20161219210716) do
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "post_id"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "followers", force: :cascade do |t|
     t.integer  "follower_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   create_table "followings", force: :cascade do |t|
     t.integer  "following_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-  end
-
-  create_table "language_skills", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "language_id"
-    t.integer  "rating"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "languages", force: :cascade do |t|
@@ -52,10 +46,10 @@ ActiveRecord::Schema.define(version: 20161219210716) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
-    t.integer  "sender_id"
     t.integer  "receiver_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "sender_id"
   end
 
   create_table "messages_users", force: :cascade do |t|
@@ -84,6 +78,14 @@ ActiveRecord::Schema.define(version: 20161219210716) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "language_id"
+    t.integer  "rating"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "team_messages", force: :cascade do |t|
