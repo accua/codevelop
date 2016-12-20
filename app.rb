@@ -22,3 +22,15 @@ get '/users/home' do
   @user = User.find(session[:id])
   erb :home
 end
+
+get '/sign_in' do
+  erb :sign_in
+end
+
+post '/sign_in' do
+  email = params[:username]
+  password = params[:password]
+  @user = User.find_by(email: email, password: password)
+  session[:id] = @user.id
+  erb :home
+end
