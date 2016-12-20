@@ -1,9 +1,18 @@
 require 'bundler/setup'
 require 'sinatra'
+require 'bcrypt'
 Bundler.require(:default)
 enable :sessions
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
+def login
+  @user = User.find_by_email(params[:username])
+  if @user.password == params[:password]
+    session[:id] = @user.id
+  else
+    redirect_to '/sign_in'
+  end
+end
 
 get('/') do
   erb :sign_up
@@ -13,7 +22,10 @@ post '/sign_up' do
   user = params[:user]
   email = params[:email]
   password = params[:password]
-  @user = User.create({user_name: user, email: email, password: password})
+  @user = User.new({user_name: user, email: email})
+  @user.password = password
+  @user.save!
+  binding.pry
   session[:id] = @user.id
   redirect to '/users/home'
 end
@@ -28,10 +40,7 @@ get '/sign_in' do
 end
 
 post '/sign_in' do
-  email = params[:username]
-  password = params[:password]
-  @user = User.find_by(email: email, password: password)
-  session[:id] = @user.id
+  login
   erb :home
 end
 
