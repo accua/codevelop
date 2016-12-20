@@ -34,3 +34,9 @@ post '/sign_in' do
   session[:id] = @user.id
   erb :home
 end
+
+get '/logout' do
+  session.clear
+  @logout = true
+  erb :sign_in
+end
