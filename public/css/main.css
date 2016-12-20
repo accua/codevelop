@@ -1,0 +1,112 @@
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-color: #FAFAFA; }
+  body::after {
+    clear: both;
+    content: "";
+    display: block; }
+
+nav {
+  background-color: #fff;
+  border-color: #efdfff; }
+  nav .brand-logo, nav ul a {
+    color: #9E7CC1; }
+  nav a {
+    color: #9E7CC1; }
+  @media screen and (min-width: 992px) {
+    nav form {
+      width: 50%;
+      display: inline-block;
+      position: absolute;
+      left: 30%;
+      transform: translate(-30%, 0); } }
+  nav .input-field label i {
+    color: #9E7CC1; }
+  nav .input-field input {
+    border: 1px solid #ddd;
+    height: 65%; }
+
+.input-field:first-of-type {
+  margin-top: 0; }
+.no-move {
+  transform: translateY(0) !important; }
+
+.brand-logo {
+  position: relative;
+  left: 15px;
+  padding: 0 15px; }
+  .brand-logo .fa-copyright {
+    position: absolute;
+    left: 9px; }
+  @media screen and (min-width: 767px) {
+    .brand-logo {
+      top: -2px; } }
+
+.dropdown-content li > a {
+  color: #9E7CC1; }
+
+input[type='search'] {
+  border: 1px solid #ddd; }
+  @media screen and (min-width: 992px) {
+    input[type='search'] {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%); } }
+
+.card {
+  padding: 20px;
+}
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 90%; } }
+
+.content {
+  margin-top: 50px; }
+
+.center-text {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #9E9E9E;
+}
+
+#sign-up-form {
+  margin-top: 75px;
+  padding: 20px;
+}
+
+/* override materialize label focus color */
+  .input-field input[type=text]:focus + label, input[type="password"]:focus:not([readonly]) + label {
+    color: #4B484F;
+}
+/* override materialize label underline focus color */
+  .input-field input[type=text]:focus, .input-field input[type=password]:focus {
+    border-bottom: 1px solid #4B484F;
+    box-shadow: 0 1px 0 0 #4B484F;
+  }
+
+/* override materialize label icon prefix color */
+  .input-field .prefix.active {
+    color: #4B484F;
+  }
+
+  .input-field .prefix {
+    color: #9E9E9E;
+  }
+
+
+.secondary-color {
+  background-color: #C5E26A !important;
+}
+
+.text-muted {
+  color: #9E9E9E;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,32 @@
+body {
+  font-family: $body_font;
+  font-size: 18px;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  font-family: $title_font; }
+
+.primary-font {
+  font-family: $body_font; }
+
+.secondary-font {
+  font-family: $title_font; }
+
+.primary-color-font {
+  color: $primaryColor; }
+
+.secondary-color-font {
+  color: $secondaryColor; }
+
+.gray-font {
+  color: $darkGray; }
+
+.light-gray-font {
+  color: $lightGray; }
+
+.headers {
+  margin-top: 70px; }
+
+td {
+  padding: 10px;
+  vertical-align: middle; }

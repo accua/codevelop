@@ -1,0 +1,237 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+.jumbotron {
+  background-color: transparent;
+  text-align: center; }
+
+section {
+  margin-bottom: 150px; }
+
+.box {
+  width: 31.33%;
+  height: auto;
+  margin: 20px 9%;
+  float: left; }
+  .box::after {
+    content: '';
+    display: table;
+    clear: both; }
+  .box p {
+    float: right;
+    margin: 1px 5px; }
+  .box .left {
+    float: left;
+    font-size: 18px;
+    font-weight: bold; }
+
+.pallette {
+  margin: 0 auto;
+  display: block;
+  min-height: 150px;
+  width: 70%; }
+
+.swatch {
+  width: 20%;
+  height: 10vh;
+  margin: 60px 0;
+  float: left; }
+
+.color-section::after {
+  content: '';
+  display: table;
+  clear: both; }
+
+.color {
+  display: block;
+  width: 100%;
+  height: 15vh;
+  margin: 20px 0; }
+
+.primary {
+  background-color: #9E7CC1; }
+
+.secondary {
+  background-color: #C5E26A; }
+
+.gray {
+  background-color: #4b484f; }
+
+.light-gray {
+  background-color: #f1edf4; }
+
+.black {
+  background-color: #333; }
+
+.underline {
+  border-bottom: 2px solid #ccc; }
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-size: 18px; }
+
+h1, .h1, h2, .h2, h3, .h3 {
+  font-family: "Open Sans", sans-serif; }
+
+.primary-font {
+  font-family: "Raleway", sans-serif; }
+
+.secondary-font {
+  font-family: "Open Sans", sans-serif; }
+
+.primary-color-font {
+  color: #9E7CC1; }
+
+.secondary-color-font {
+  color: #C5E26A; }
+
+.gray-font {
+  color: #4b484f; }
+
+.light-gray-font {
+  color: #f1edf4; }
+
+.headers {
+  margin-top: 70px; }
+
+td {
+  padding: 10px;
+  vertical-align: middle; }
+
+.navbar-default {
+  background-color: white;
+  border-color: #efdfff; }
+  .navbar-default .navbar-brand {
+    color: #9E7CC1; }
+    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+      color: #784da3; }
+  .navbar-default .navbar-text {
+    color: #9E7CC1; }
+  .navbar-default .navbar-nav > li > a {
+    color: #9E7CC1; }
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+      color: #784da3; }
+  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #784da3;
+    background-color: #efdfff; }
+  .navbar-default .navbar-nav > .alt > a, .navbar-default .navbar-nav > .alt > a:hover, .navbar-default .navbar-nav > .alt > a:focus {
+    color: #784da3;
+    background-color: #ececec; }
+  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #784da3;
+    background-color: #efdfff; }
+  .navbar-default .navbar-toggle {
+    border-color: #efdfff; }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+      background-color: #efdfff; }
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: #9E7CC1; }
+  .navbar-default .navbar-collapse,
+  .navbar-default .navbar-form {
+    border-color: #9E7CC1; }
+  .navbar-default .navbar-link {
+    color: #9E7CC1; }
+    .navbar-default .navbar-link:hover {
+      color: #784da3; }
+
+@media (max-width: 767px) {
+  .navbar-form {
+    display: none; }
+
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #9E7CC1; }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+      color: #784da3; }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #784da3;
+    background-color: #efdfff; } }
+.navbar-brand {
+  position: relative;
+  padding: 0 15px; }
+  .navbar-brand .fa-copyright {
+    position: absolute;
+    left: 22px; }
+  @media screen and (min-width: 767px) {
+    .navbar-brand {
+      top: -2px; } }
+
+.search-button {
+  position: absolute;
+  right: 15px; }
+  .nav-form .search-button {
+    width: 40px; }
+
+.search {
+  width: 95%;
+  margin: 0;
+  display: inline-block; }
+
+.nav-icons {
+  text-align: center;
+  display: block; }
+  .nav-icons .icon {
+    color: #9E7CC1;
+    font-size: 40px; }
+  @media screen and (min-width: 767px) {
+    .nav-icons {
+      display: none; } }
+  .nav-icons li {
+    list-style: none; }
+  .nav-icons ul {
+    margin: 0; }
+
+.nav-form {
+  display: block; }
+  @media screen and (min-width: 767px) {
+    .nav-form {
+      display: none; } }
+
+.form-group {
+  width: 100%; }
+
+.dropdown-menu {
+  right: -40px;
+  left: auto; }
+  @media screen and (min-width: 682px) {
+    .dropdown-menu {
+      left: 0;
+      right: auto; } }
+
+.navbar-form {
+  width: 50%;
+  margin: 10px auto;
+  position: absolute;
+  left: 30%;
+  transform: translate(-30%, 0); }
+  @media screen and (min-width: 992px) {
+    .navbar-form {
+      left: 35%;
+      transform: translate(-35%, 0); } }
+
+@media (min-width: 768px) {
+  .navbar-form > .form-group .form-control {
+    width: 95%; } }
+.form-control:focus {
+  border-color: #9E7CC1; }
+
+#components {
+  background-color: #FAFAFA; }
+
+#components .row {
+  margin-top: 50px; }
+
+.panel {
+  padding: 20px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35), -1px 1px 3px rgba(0, 0, 0, 0.35); }
+
+.right-sidebar {
+  display: none; }
+  @media screen and (min-width: 992px) {
+    .right-sidebar {
+      display: block; } }
+
+body {
+  background-color: #FAFAFA; }
+
+/*# sourceMappingURL=screen.css.map */

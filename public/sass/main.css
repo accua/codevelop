@@ -1,0 +1,20 @@
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+body {
+  font-family: "Raleway", sans-serif; }
+  body::after {
+    clear: both;
+    content: "";
+    display: block; }
+
+nav {
+  background-color: #fff;
+  border-color: #efdfff; }
+  nav .brand-logo, nav ul a {
+    color: #9E7CC1; }
+
+/*# sourceMappingURL=main.css.map */

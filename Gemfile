@@ -6,6 +6,7 @@ gem 'rake'
 gem 'pg'
 gem 'sinatra'
 gem 'pry'
+gem 'base'
 
 group(:test) do
   gem 'rspec'

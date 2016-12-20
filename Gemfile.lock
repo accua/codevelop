@@ -16,6 +16,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     backports (3.6.8)
+    base (0.0.2)
     capybara (2.11.0)
       addressable
       mime-types (>= 1.16)
@@ -89,6 +90,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  base
   capybara
   pg
   pry

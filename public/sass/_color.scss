@@ -1,0 +1,79 @@
+
+
+.jumbotron {
+  background-color: transparent;
+  text-align: center;
+}
+
+section {
+  margin-bottom: 150px;
+}
+
+.box {
+  @include box(31.33%, auto);
+  margin: 20px 9%;
+  float: left;
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  & p {
+    float: right;
+    margin: 1px 5px;
+  }
+  & .left {
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.pallette {
+  margin: 0 auto;
+  display: block;
+  min-height: 150px;
+  width: 70%;
+}
+
+.swatch {
+  @include box(20%, 10vh);
+  margin: 60px 0;
+  float: left;
+}
+
+.color-section::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.color {
+  display: block;
+  @include box(100%, 15vh);
+  margin: 20px 0;
+}
+
+.primary {
+  background-color: $primaryColor;
+}
+
+.secondary {
+  background-color: $secondaryColor;
+}
+
+.gray {
+  background-color: $darkGray;
+}
+
+.light-gray {
+  background-color: $lightGray;
+}
+
+.black {
+  background-color: #333;
+}
+
+.underline {
+  border-bottom: 2px solid #ccc;
+}

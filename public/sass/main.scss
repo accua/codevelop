@@ -1,0 +1,95 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "variables";
+
+body {
+  font-family: $body_font;
+  @include clearfix;
+  background-color: $bodyBackground;
+}
+
+nav {
+  background-color: #fff;
+  border-color: #efdfff;
+  .brand-logo, ul a {
+    color: $primaryColor;
+  }
+  a {
+    color: $primaryColor;
+  }
+  form {
+    @media screen and (min-width: 992px) {
+      &{
+        width: 50%;
+        display: inline-block;
+        position: absolute;
+        left: 30%;
+        transform: translate(-30%, 0);
+      }
+    }
+  }
+  .input-field {
+    label i {
+      color: $primaryColor;
+    }
+    input {
+      border: 1px solid #ddd;
+      height: 65%;
+    }
+  }
+}
+
+.input-field {
+  &:first-of-type {
+    margin-top: 0;
+  }
+  label.active {
+    transform: translateY(0);
+  }
+}
+
+.brand-logo {
+  position: relative;
+  left: 15px;
+  padding: 0 15px;
+  .fa-copyright {
+    position: absolute;
+    left: 9px;
+  }
+  @media screen and (min-width: 767px) {
+    & {
+      top: -2px;
+    }
+  }
+}
+
+.dropdown-content li > a {
+  color: $primaryColor;
+}
+
+input[type='search'] {
+  @media screen and (min-width: 992px) {
+    & {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+  border: 1px solid #ddd;
+}
+
+.card {
+  padding: 20px;
+}
+
+.container {
+  @media only screen and (min-width: 993px) {
+    & {
+      width: 90%;
+    }
+  }
+}
+
+.content {
+  margin-top: 50px;
+}

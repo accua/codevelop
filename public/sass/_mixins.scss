@@ -1,0 +1,7 @@
+@mixin shadow_card {
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.35), -1px 1px 3px rgba(0,0,0,0.35);
+}
+@mixin box($width, $height) {
+  width: $width;
+  height: $height;
+}
