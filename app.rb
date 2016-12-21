@@ -60,3 +60,16 @@ get '/logout' do
   @logout = true
   erb :sign_in
 end
+
+get '/search' do
+  @users = []
+  @teams = []
+  @language = []
+  if params[:query]
+    @users.push(User.search(params[:query]))
+    @teams.push(Team.search(params[:query]))
+    @language.push(Language.search(params[:query]))
+  else
+    erb :error
+  end
+end

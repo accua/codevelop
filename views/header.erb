@@ -2,9 +2,9 @@
   <div class="nav-wrapper">
     <a href="/codevelop_styleguide/index.html" class="brand-logo"><i class="fa fa-connectdevelop fa-2x"></i><i class="fa fa-copyright fa-2x"></i></a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <form class="hide-on-med-and-down" action="/search">
+        <form class="hide-on-med-and-down" action="/search" method="get">
         <div class="input-field">
-          <input id="search" type="search" required>
+          <input id="search" type="search" name="query" required>
           <label for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
@@ -29,9 +29,9 @@
     </ul>
   </div>
 </nav>
-<form class="hide-on-large-only" action="/search">
+<form class="hide-on-large-only" action="/search" method="get">
   <div class="input-field">
-    <input id="search2" type="search" required>
+    <input id="search2" name="query" type="search" required>
     <label class="no-move" for="search"><i class="material-icons">search</i></label>
     <i class="material-icons">close</i>
   </div>
