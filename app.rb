@@ -23,7 +23,6 @@ get '/sign_up' do
 end
 
 post '/sign_up' do
-  binding.pry
   user = params[:user]
   email = params[:email]
   if User.exists?(email: email)
