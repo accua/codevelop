@@ -35,8 +35,6 @@ nav {
 
 .input-field:first-of-type {
   margin-top: 0; }
-.input-field label.active {
-  transform: translateY(0); }
 
 .brand-logo {
   position: relative;
@@ -158,5 +156,30 @@ input[type='search'] {
     margin-right: auto;
   }
 }
+#message-top {
+  margin-top: 20px;
+}
+#inbox-list {
+  height: 500px;
+}
 
+#message-center {
+  height: 750px;
+  overflow-y: scroll;
+  margin-bottom: 0;
+}
+
+.collapsible-body {
+  margin-top: 20px;
+}
+
+.fa-paper-plane {
+  position: relative;
+  left: -4px;
+  top:-5px;
+}
+
+li {
+  list-style: none;
+}
 /*# sourceMappingURL=main.css.map */

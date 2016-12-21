@@ -23,10 +23,9 @@ get '/sign_up' do
 end
 
 post '/sign_up' do
-  user = params[:user]
+  user = params[:user_name]
   email = params[:email]
   if User.exists?(email: email)
-    binding.pry
     @email_error = true
     erb :sign_up
   elsif params[:password1] != params[:password2]
@@ -61,12 +60,48 @@ get '/logout' do
   erb :sign_in
 end
 
-get '/search' do
-  if params[:query]
-    search = params[:query] + "%"
-    @users = User.where('user_name LIKE ?', search)
-    @teams = Team.where('name LIKE ?', search)
-    @language = Language.where('name LIKE ?', search)
-    erb :results
+get '/conversation/:id' do
+  @user = User.find(params[:id])
+  erb :conversation, :layout => (request.xhr? ? false : :layout)
+end
+
+get '/messages' do
+  user = User.find(session[:id])
+  @users = []
+  user.messages.each do |message|
+    if message.sender_id != user.id && !@users.include?(User.find(message.sender_id.to_i))
+      @users.push(User.find(message.sender_id.to_i))
+    elsif message.receiver_id != user.id && !@users.include?(User.find(message.receiver_id.to_i))
+        @users.push(User.find(message.receiver_id.to_i))
+    end
   end
+  # binding.pry
+  erb :messages
+end
+
+get '/message/new' do
+  @users = User.all
+  erb :message_form
+end
+
+post '/message' do
+  @user = User.find(session[:id])
+  receiver = User.find_by(email: params[:receiver_id])
+  new_message = Message.create(content: params[:content], receiver_id: receiver.id.to_i, sender_id: @user.id.to_i)
+  if @user.messages.push(new_message) && receiver.messages.push(new_message)
+    session[:recent] = User.find_by(email: params[:receiver_id]).id.to_i
+    redirect '/messages'
+  else
+  erb :message_form
+  end
+end
+
+get '/recent_message' do
+  @user = User.find(session[:recent])
+  erb :recent_conversation, :layout => (request.xhr? ? false : :layout)
+end
+
+get '/method' do
+  User.all.each(&:destroy)
+  redirect '/messages'
 end

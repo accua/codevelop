@@ -20,5 +20,20 @@
       <%= erb :header %>
     </header>
     <%= yield %>
+    <script type="text/javascript">
+    $(function(){
+      $('select').material_select();
+      $('#textarea1').trigger('autoresize');
+      $('input.autocomplete').autocomplete({
+        data: {
+          <% User.all.each do |user| %>
+            <% if user.id != session[:id] %>
+              "<%= user.email %>": "http://placehold.it/40x40",
+            <% end %>
+          <% end %>
+        }
+      });
+    });
+    </script>
   </body>
 </html>

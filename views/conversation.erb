@@ -1,0 +1,3 @@
+<% @user.messages.each do |message| %>
+  <li><%= User.find(message.sender_id).user_name %>: <%= message.content %></li>
+<% end %>
