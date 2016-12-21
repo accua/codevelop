@@ -4,6 +4,7 @@
 
 body {
   font-family: $body_font;
+  color: #333;
   @include clearfix;
   background-color: $bodyBackground;
 }

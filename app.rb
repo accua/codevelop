@@ -14,20 +14,32 @@ def login
   end
 end
 
-get('/') do
+get '/' do
+  erb :index
+end
+
+get '/sign_up' do
   erb :sign_up
 end
 
 post '/sign_up' do
+  binding.pry
   user = params[:user]
   email = params[:email]
-  password = params[:password]
-  @user = User.new({user_name: user, email: email})
-  @user.password = password
-  @user.save!
-  binding.pry
-  session[:id] = @user.id
-  redirect to '/users/home'
+  if User.exists?(email: email)
+    binding.pry
+    @email_error = true
+    erb :sign_up
+  elsif params[:password1] != params[:password2]
+    @password_error = true
+    erb :sign_up
+  else
+    @user = User.new({user_name: user, email: email})
+    @user.password = params[:password]
+    @user.save!
+    session[:id] = @user.id
+    redirect to '/users/home'
+  end
 end
 
 get '/users/home' do

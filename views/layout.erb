@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Raleway" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/sign_up.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="/js/bin/materialize.min.js"></script>
     <title>Sign Up - Codevelop</title>
@@ -26,15 +25,15 @@
             </div>
           </form>
         <ul class="right hide-on-med-and-down">
-          <li class="active"><a href="sass.html">Sass</a></li>
-          <li><a href="/logout">Log out</a></li>
+          <li class="active"><a href="/users/home">Home</a></li>
+          <li><a href="/teams">Teams</a></li>
           <!-- Dropdown Trigger -->
           <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
           <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">one</a></li>
-            <li><a href="#!">two</a></li>
+            <li><a href="/messages">Messages</a></li>
+            <li><a href="/profile">Profile</a></li>
             <li class="divider"></li>
-            <li><a href="#!">three</a></li>
+            <li><a href="/logout">Logout</a></li>
           </ul>
         </ul>
         <ul class="side-nav" id="mobile-demo">
@@ -53,5 +52,11 @@
       </div>
     </form>
     <%= yield %>
+    <script type="text/javascript">
+      $(function(){
+        $(".dropdown-button").dropdown();
+        $(".button-collapse").sideNav();
+      })
+    </script>
   </body>
 </html>
