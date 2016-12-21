@@ -62,14 +62,11 @@ get '/logout' do
 end
 
 get '/search' do
-  @users = []
-  @teams = []
-  @language = []
   if params[:query]
-    @users.push(User.search(params[:query]))
-    @teams.push(Team.search(params[:query]))
-    @language.push(Language.search(params[:query]))
-  else
-    erb :error
+    search = params[:query] + "%"
+    @users = User.where('user_name LIKE ?', search)
+    @teams = Team.where('name LIKE ?', search)
+    @language = Language.where('name LIKE ?', search)
+    erb :results
   end
 end
