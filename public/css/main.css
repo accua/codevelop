@@ -102,7 +102,7 @@ input[type='search'] {
 
 
 .secondary-color {
-  background-color: #C5E26A !important;
+  background-color: #00796b !important;
 }
 
 .text-muted {
@@ -160,3 +160,14 @@ input[type='search'] {
 }
 
 /*# sourceMappingURL=main.css.map */
+.error {
+  color: #f44336;
+}
+
+#sign-up-form h3 {
+  color: #00796b;
+}
+
+.brand-logo {
+
+}

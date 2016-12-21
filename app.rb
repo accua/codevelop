@@ -25,11 +25,15 @@ def authenticate!
 end
 
 def login
-  @user = User.find_by_email(params[:username])
-  if @user.password == params[:password]
+  @user = User.find_by(email: params[:username])
+  @user.nil? ? @user = User.find_by(user_name: params[:username]) : false
+  if @user.nil?
+    session[:error] = "Looks like no one exists with that username/password"
+    redirect to '/sign_in'
+  elsif @user.password == params[:password]
     session[:id] = @user.id
   else
-    binding.pry
+    session[:error] = "Incorrect password. Try again my friend"
     redirect to '/sign_in'
   end
 end
@@ -39,28 +43,29 @@ get '/' do
 end
 
 get '/sign_up' do
+  @errors = session[:error]
+  session[:error] = nil
   erb :sign_up
 end
 
 post '/sign_up' do
   user = params[:user_name]
   email = params[:email]
-  if User.exists?(email: email)
-    binding.pry
-    @email_error = true
-    erb :sign_up
-  elsif params[:password1] != params[:password2]
-    @password_error = true
-    erb :sign_up
+  if User.exists?(user_name: user)
+    session[:error] = "That username is already taken"
+    redirect '/sign_up'
+  elsif User.exists?(email: email)
+    session[:error] = "That email is already taken"
+    redirect '/sign_up'
   else
-    @user = User.create({user_name: user, email: email})
+    @user = User.new({user_name: user, email: email})
     @user.password = params[:password1]
-    binding.pry
     if @user.save!
     session[:id] = @user.id
     redirect to '/users/home'
     else
-      erb :sign_up
+      session[:error] = "There was a problem saving your profile"
+      redirect '/sign_up'
     end
   end
 end
@@ -71,6 +76,8 @@ get '/users/home' do
 end
 
 get '/sign_in' do
+  @errors = session[:error]
+  session[:error] = nil
   erb :sign_in
 end
 
@@ -81,8 +88,7 @@ end
 
 get '/logout' do
   session.clear
-  @logout = true
-  erb :sign_in
+  redirect 'sign_in'
 end
 
 get '/github_sign_up' do
