@@ -109,4 +109,53 @@ input[type='search'] {
   color: #9E9E9E;
 }
 
+@media only screen and (min-width: 993px) {
+  #team_pic {
+    display: block;
+    width: 50%;
+    height: 15em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 1034px) {
+  #team_pic {
+    display: block;
+    width: 75%;
+    height: 15em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 854px) {
+  #team_pic {
+    display: block;
+    width: 75%;
+    height: 15em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 855px) {
+  #team_pic {
+    display: block;
+    width: 100%;
+    height: 15em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #team_pic {
+    display: block;
+    width: 100%;
+    height: 15em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 /*# sourceMappingURL=main.css.map */
