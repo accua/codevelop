@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :posts
   has_and_belongs_to_many :teams
 
+  validates(:user_name, :presence => true)
+  validates(:email, :presence => true)
   def password
     @password ||= Password.new(password_hash)
   end

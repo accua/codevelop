@@ -35,8 +35,8 @@ nav {
 
 .input-field:first-of-type {
   margin-top: 0; }
-.input-field label.active {
-  transform: translateY(0); }
+/*.input-field label.active {*/
+  /*transform: translateY(0); }*/
 
 .brand-logo {
   position: relative;

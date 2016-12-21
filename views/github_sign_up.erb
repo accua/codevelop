@@ -1,0 +1,42 @@
+<div class="row">
+  <div id="sign-up-form" class="col s4 offset-s4 card">
+    <h3 class="center-text">Join Codevelop</h3>
+    <div class="col s8">
+      <form action="/sign_up" method="post">
+        <div class="row">
+          <div class="input-field">
+            <i class="material-icons prefix small">account_circle</i>
+            <input id="user_name" name="user_name" type="text" class="validate" <% if !@auth_result.nil? %>value="<%= @auth_result['login'] %>"<% end %> required>
+            <label for="user_name">Username</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <i class="material-icons prefix small">email</i>
+            <input id="email" name="email" type="text" class="validate <% if @email_error %> invalid<% end %>" <% if !@auth_result.nil? %>value="<%= @auth_result['private_emails'][0]['email'] %>"<% end %> required>
+            <label data-error="That email is already taken" for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <i class="material-icons prefix small">lock_open</i>
+            <input id="password1" name="password1" type="password" class="validate <% if @password_error %> invalid<% end %>" required>
+            <label data-error="Passwords don't match" for="password1">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <i class="material-icons prefix small">lock_outline</i>
+            <input id="password2" name="password2" type="password" class="validate" required>
+            <label for="password2">Confirm Password</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light secondary-color" type="submit" name="create">Join</button>
+      </form><br>
+    </div>
+    <div class="col s4">
+      <p class="text-muted">Forage fashion axe seitan, pug cliche dreamcatcher offal.</p>
+    </div>
+  </div>
+  <% if !@auth_result %><a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>">Sign in with github?</a><% end %>
+</div>
