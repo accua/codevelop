@@ -390,6 +390,15 @@ patch '/users/:id' do
   erb :profile
 end
 
+post '/comment' do
+  content = params[:content]
+  post_id = params[:post_id].to_i
+  current_user = params[:current_user].to_i
+  post = Post.find(post_id)
+  post.comments.create({user_id: current_user, post_id: post_id, content: content})
+  redirect '/home'
+end
+
 # get '/teams/:id' do
 #
 # end
