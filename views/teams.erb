@@ -1,22 +1,51 @@
 <div class="container">
   <div class="row">
-    <div class="col m8 card">
-      <h3>Browse teams</h3>
-      <% @teams.each do |team| %>
-      <ul>
-        <li><img src="<%= team.logo %>" alt="Team Logo"><a href="/teams/<%= team.id %>"><%= team.name %></a></li>
-        <ul>
-          <li><%= team.team_info %></li>
-        </ul>
-      </ul>
-    <% end %>
+    <div class="col l6 card">
+      <h2 class="profile-head">Browse teams</h2>
+      <% if @teams.exists? %>
+        <% @teams.each do |team| %>
+        <div class="col s12 m12">
+          <h4 class="header"><%= team.name %></h4>
+          <div class="card horizontal">
+            <div class="card-image">
+              <img class="card-image" src="<%= team.logo %>">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                  <p><%= team.team_info %></p>
+                </div>
+              <div class="card-action">
+                <a href="/teams/<%= team.id %>">Go to page</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <p>There arent any teams yet, <a href="/teams/new">why don't you create one?</a></p>
+      <% end %>
     </div>
-    <div class="col m4 card">
-      <h3>Your Teams</h3>
-      <% @user.teams.each do |team| %>
-        <ul>
-          <li><img src="<%= team.logo %>" alt="Team Logo"><a href="/teams/<%=team.id %>"><%= team.name %></a></li>
-        </ul>
+    <div class="col l5 offset-l1 card">
+      <h2 class="profile-head">Your teams</h2>
+      <% if @user.teams.exists? %>
+        <% @user.teams.each do |team| %>
+        <div class="col s12 m12">
+          <h4 class="header"><%= team.name %></h4>
+          <div class="card horizontal">
+            <div class="card-image">
+              <img class="card-image" src="<%= team.logo %>">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                  <p><%= team.team_info %></p>
+                </div>
+                <a class="card-action" href="/teams/<%= team.id %>">Go to page</a>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <p class="profile-head">You aren't yet apart of any teams, take a look at what's available.</p>
       <% end %>
     </div>
   </div>

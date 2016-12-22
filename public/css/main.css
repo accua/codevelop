@@ -487,4 +487,23 @@ li {
 .search-results a {
   position: relative;
   top: -20px;
+
+.card-image {
+  height: 225px;
+  width: auto;
+}
+
+.card-content {
+  margin-left: 10px;
+  max-height: 243px;
+  overflow: hidden;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+  color: #333;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+    color: #00695C;
+>>>>>>> 8448da2ea760eccf0479b7c86f5c67b4af3719f7
 }

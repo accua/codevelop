@@ -1,4 +1,25 @@
 <div class="container content">
+  <div class="col s8 l7">
+    <ul class="collapsible" data-collapsible="accordion" id="create-message">
+      <li>
+        <div class="collapsible-header"><i class="material-icons prefix">input</i>New Message</div>
+        <div class="collapsible-body">
+            <form action="/post_content" method="post">
+              <div class="row">
+                <div class="input-field col s10 offset-s1">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea id="textarea1" name="content" class="materialize-textarea"></textarea>
+                  <label for="textarea1">Say something</label>
+                </div>
+                <div class="col s3 offset-s1">
+                  <button class="waves-effect waves-light btn" type="submit" name="button"><i class="fa fa-paper-plane fa-lg"></i>  Post</button>
+                </div>
+              </div>
+            </form>
+        </div>
+      </li>
+    </ul>
+  </div>
   <div class="row">
     <div class="git-commits col m4 l3">
       <div class="card">
@@ -11,8 +32,36 @@
         <h5>Hello, <%= @user.user_name %></h5>
       </div>
       <div class="card">
-        <h5>Content panel</h5>
-        <p>Occupy kitsch plaid cornhole tattooed sartorial four dollar toast pour-over. Irony tilde retro, messenger bag hammock gluten-free seitan +1 intelligentsia literally. Chicharrones ramps forage, vegan tousled wayfarers franzen.</p>
+<<<<<<< HEAD
+        <h5>Posts</h5>
+        <% @posts.each do |post| %>
+        <% post_user = User.find(post.user_id.to_i) %>
+          <p><%= post_user.user_name %>: <%= post.content %></p>
+=======
+        <h5>Teams</h5>
+        <% if @user.teams.exists? %>
+          <% @user.teams.each do |team| %>
+          <div class="col s12 m12">
+            <h4 class="header"><%= team.name %></h4>
+            <div class="card horizontal">
+              <div class="card-image">
+                <img class="card-image" src="<%= team.logo %>">
+              </div>
+              <div class="card-stacked">
+                  <div class="card-content">
+                    <p><%= team.team_info %></p>
+                  </div>
+                <div class="card-action">
+                  <a href="/teams/<%= team.id %>">Go to page</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% else %>
+          <p class="profile-head">You aren't yet apart of any teams, select teams to see what is available.</p>
+>>>>>>> 47802fe0ea727fcc79ec14bb1f88817f514ee94c
+        <% end %>
       </div>
     </div>
     <div class="online-users col l2 hide-on-med-and-down">
@@ -24,4 +73,15 @@
       </div>
     </div>
   </div>
+  <% if @users.any? %>
+    <% @users.each do |user| %>
+      <p><a href="/user/<%= user.id %>"><%= user.user_name %></a></p>
+    <% end %>
+  <% end %>
+  <% if @user.followings.any? %>
+    <% @user.followings.each do |following| %>
+      <% user = User.find(following.following_id.to_i) %>
+      <%= user.user_name %>
+    <% end %>
+  <% end %>
 </div>
