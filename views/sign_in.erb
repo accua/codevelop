@@ -22,8 +22,9 @@
     <p>New to Codevelop? <a href="/sign_up">Create an account!</a></p>
     <% if !errors.nil? %>
     <div class="clearfix"></div>
+    <%= session[:errors] = nil %>
     <p class="error"><%= errors %></p>
-      <% session[:errors] = nil %>
+    <% errors = nil %>
     <% end %>
   </div>
 </div>

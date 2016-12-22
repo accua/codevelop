@@ -27,6 +27,35 @@ def authenticate!
   erb :sign_up, :locals => {:client_id => CLIENT_ID}
 end
 
+def current_user
+  User.find(session[:id])
+end
+
+def repos(user)
+  access_token = session[:access_token]
+  all_repos = JSON.parse(RestClient.get('https://api.github.com/user/repos',
+                            {:params => {:access_token => access_token},
+                            :accept => :json}))
+  6.times do |time|
+    user.repos.create({name: all_repos[time]['name'], url: all_repos[time]['url'], language: all_repos[time]['language']})
+  end
+end
+
+def get_posts
+  user = current_user
+  posts_list = []
+  user.followings.each do |following|
+    follow = User.find(following.following_id)
+    follow.posts.each do |post|
+      posts_list.push(post)
+    end
+  end
+  user.posts.each do |post|
+    posts_list.push(post)
+  end
+  posts_list
+end
+
 def login
   @user = User.find_by(email: params[:username])
   @user.nil? ? @user = User.find_by(user_name: params[:username]) : false
@@ -42,7 +71,7 @@ def login
 end
 
 get '/' do
-  erb :index
+  erb :index, :locals => {:client_id => CLIENT_ID}
 end
 
 get '/sign_up' do
@@ -53,17 +82,21 @@ post '/sign_up' do
   user = params[:user_name]
   email = params[:email]
   profile_picture = params[:profile_picture]
+  repos = params[:repos]
   if User.exists?(user_name: user)
     session[:error] = "That username is already taken"
-    redirect '/sign_up'
+    redirect '/github'
   elsif User.exists?(email: email)
     session[:error] = "That email is already taken"
-    redirect '/sign_up'
+    redirect '/github'
   else
     @user = User.new({user_name: user, email: email, profile_picture: profile_picture, online: true})
     @user.password = params[:password1]
     if @user.save!
     session[:id] = @user.id
+      if authenticated?
+        repos(@user)
+      end
     redirect '/home'
     else
       session[:error] = "There was a problem saving your profile"
@@ -73,15 +106,9 @@ post '/sign_up' do
 end
 
 get '/home' do
-  @user = User.find(session[:id])
-    @users = User.all
-  @posts = []
-  @user.followings.each do |following|
-    follow = User.find(following.user_id.to_i)
-    follow.posts.each do |post|
-      @posts.push(post)
-    end
-  end
+  @user = current_user
+  @users = User.all
+  @posts = get_posts
   @online_users = []
   User.all.each do |user|
     user.online and user.id != @user.id ? @online_users.push(user) : false
@@ -137,6 +164,7 @@ get '/github' do
     @user_name = @auth_result['login']
     @email = @auth_result['private_emails'][0]['email']
     @profile_picture = @auth_result['avatar_url']
+
     erb :sign_up
   end
 end
@@ -169,7 +197,6 @@ get '/messages' do
         @users.push(User.find(message.receiver_id.to_i))
     end
   end
-  # binding.pry
   erb :messages
 end
 
@@ -253,3 +280,7 @@ end
 # delete 'teams/:id' do
 #
 # end
+get '/clear' do
+  session.clear
+  redirect '/'
+end
