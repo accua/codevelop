@@ -11,14 +11,9 @@ $('#submit_logo').on('click', function() {
 
 
 $(document).ready(function() {
- $("form#new-user").submit(function(event) {
-  event.preventDefault();
-});
-
  $('select').material_select();
  $('#bio').val('');
  $('textarea#bio').trigger('autoresize');
  $('textarea#bio').characterCounter();
-
  Materialize.updateTextFields();
 });

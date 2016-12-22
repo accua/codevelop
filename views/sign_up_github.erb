@@ -19,7 +19,8 @@
               <input id="password1" name="password1" type="password" class="validate" required>
               <label for="password1">Password</label>
             </div>
-            <input type="hidden" name="profile_picture" value="<% @profile_picture %>">
+            <input type="hidden" name="profile_picture" value="<%= @profile_picture %>">
+            <input class="hide" type="hidden" name="repos" value='<%= @repos %>'>
             <button class="btn waves-effect waves-light secondary-color" type="submit" name="create">Join</button>
           </div>
         </div>
@@ -27,7 +28,8 @@
     <% if !errors.nil? %>
     <div class="clearfix"></div>
       <p class="error"><%= errors %></p>
-      <% session[:errors] = nil %>
+      <%= session[:errors] = nil %>
+      <% errors = nil %>
     <% end %>
   </div>
 </div>

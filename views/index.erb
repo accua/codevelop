@@ -1,37 +1,41 @@
 <div class="row signup-section">
-  <div class="intro-header col m4 offset-m1">
+  <div class="intro-header col l5 offset-l1">
     <h2>Welcome to Codevelop</h2>
     <p>We are a team of 4 developers with a user base of over 1! Migas chartreuse chicharrones, banh mi kickstarter chambray craft beer organic hella stumptown typewriter slow-carb freegan schlitz. Hexagon synth ennui, butcher hashtag echo park activated charcoal chartreuse pok pok polaroid prism tbh disrupt migas helvetica. Selfies try-hard iceland tbh. Keffiyeh lomo air plant, mustache stumptown small batch kinfolk retro unicorn.</p>
   </div>
-  <div class="col l7 splash-sign-up">
+  <div class="col l4 offset-l1 s10 offset-s1 splash-sign-up">
     <form id="new-user" action="/sign_up" method="post">
-        <div class="splash-form right">
-            <div class="col s12">
-              <div class="splash-form input-field">
-                <input id="user_name" type="text" class="validate">
-                <label class="active" for="user_name">Username</label>
-              </div>
-            </div>
-            <div class="col s12">
-              <div class="splash-form input-field">
-                <input id="email" type="email" class="validate <% if @email_error %> invalid<% end %>">
-                <label data-error="That email is already taken" class="active" for="email">Email</label>
-              </div>
-            </div>
-            <div class="col s12">
-              <div class="splash-form input-field">
-                <input id="password1" name="password1" type="password" class="validate">
-                <label class="active" for="password">Password</label>
-              </div>
-            </div>
-            <div class="splash-form signup-button col s12">
-              <button class="btn btn-raised" type="submit" name="action">Sign up to Codevelop
-              </button>
-            </div>
+      <div class="splash-form">
+        <div class="col s12">
+          <div class="splash-form input-field">
+            <input id="user_name" name="user_name" type="text" class="validate">
+            <label class="active" for="user_name">Username</label>
+          </div>
         </div>
-      </form>
-    </div>
+        <div class="col s12">
+          <div class="splash-form input-field">
+            <input id="email" name="email" type="email" class="validate">
+            <label class="active" for="email">Email</label>
+          </div>
+        </div>
+        <div class="col s12">
+          <div class="splash-form input-field">
+            <input id="password1" name="password1" type="password" class="validate">
+            <label class="active" for="password">Password</label>
+          </div>
+        </div>
+        <div class="col s12">
+          <p class="center-align">Sign up or sign up with Github</p>
+          <div class="sign-up-buttons">
+            <input type="hidden" name="profile_picture" value="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSiebfwL0tKyux6WqtrBB8LyXnKK3cI2U5jV84jAsCu6zxuWKMWqZA-rg">
+            <button class="btn btn" type="submit">Sign up to Codevelop</button>
+            <a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>"><i class="fa fa-github fa-3x"></i></a>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 <div class="row">
   <div class="col s12 l12">
     <h3 class="why-header">Why Codevelop?</h3>
@@ -99,7 +103,7 @@
 <div id="bottom-button" class= "container content">
   <div class="row">
     <div class="col s12 m12 l12">
-      <button class="btn btn-large" type="submit" name="create">Sign up now!</a>
+      <a href="/sign_up" class="btn btn-large" >Sign up now!</a>
     </div>
   </div>
 </div>
