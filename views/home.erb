@@ -70,7 +70,7 @@
       <div class="card online-users">
         <h6 class="center-align">Online users</h6>
         <% @online_users.each do |user| %>
-        <a href="/users/<%= user.id %>"><i class="fa fa-user"></i><%= user.user_name %></a>
+        <li><a href="/users/<%= user.id %>"><i class="fa fa-user"></i><%= user.user_name %></a></li>
         <% end %>
       </div>
     </div>
