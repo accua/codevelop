@@ -201,6 +201,7 @@ get '/messages' do
         @users.push(User.find(message.receiver_id.to_i))
     end
   end
+  session[:recent]? @recent = session[:recent] : false
   erb :messages
 end
 
@@ -209,12 +210,19 @@ get '/message/new' do
   erb :message_form
 end
 
+get '/message/:id/new' do
+  erb :message_form, :locals => {:user_id => params[:id]}
+end
+
 post '/message' do
   @user = User.find(session[:id])
   receiver = User.find_by(email: params[:receiver_id])
+  if receiver.nil?
+    receiver = User.find_by(user_name: params[:receiver_id])
+  end
   new_message = Message.create(content: params[:content], receiver_id: receiver.id.to_i, sender_id: @user.id.to_i)
   if @user.messages.push(new_message) && receiver.messages.push(new_message)
-    session[:recent] = User.find_by(email: params[:receiver_id]).id.to_i
+    session[:recent] = receiver.id
     redirect '/messages'
   else
   erb :message_form

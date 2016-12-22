@@ -354,6 +354,14 @@ li {
   list-style: none;
 }
 
+.receiver-message, .user-message {
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 20px;
+  margin-top: 25px;
+  max-width: 40%;
+}
+
 .user-message {
   background-color: #00796b;
   color: #fff;
@@ -368,18 +376,6 @@ li {
   max-width: 40%;
   line-height: 40px;
 }
-.receiver-message:after, .user-message:after {
-  font-size: 18px;
-  line-height: 40px;
-  border-radius: 20px;
-  margin-top: 25px;
-  max-width: 40%;
-}
-.receiver-message:after, .user-message:after {
-  content: '';
-  display: table;
-  clear: both;
-}
 
 .receiver-message {
   background-color: #9E9E9E;
@@ -388,6 +384,14 @@ li {
   color: #fff;
   padding: 10px 15px 0 10px;
 }
+
+.receiver-message:after, .user-message:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+
 
 .message-load {
   color: #00796b;
@@ -535,4 +539,28 @@ li {
 .user-buttons a{
   width: 180px;
   margin: 5px;
+}
+
+.online-users {
+  min-height: 40vh;
+}
+
+.online-users a{
+  font-size: 20px;
+}
+
+.online-users a:hover {
+  opacity: .8;
+}
+
+.online-users i {
+  margin-right: 5px;
+}
+
+a{
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
 }
