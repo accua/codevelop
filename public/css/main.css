@@ -177,8 +177,23 @@ legend {
   width: 700px;
   height: 450px;
 }
+.avatars {
+  float: left;
+  width: 20%;
+  margin: 2.5%;
+  text-align: center;
+}
 
-.avatars li, .avatars .circle .plus{
+.card:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.avatars h4 {
+  display: inline-block !important;
+}
+
+.avatars img, .avatars .circle .plus{
   display: inline-block;
 }
 .avatars .circle, .plus {

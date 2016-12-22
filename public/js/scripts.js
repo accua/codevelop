@@ -2,9 +2,8 @@ $(function(){
   $(".dropdown-button").dropdown();
   $(".button-collapse").sideNav();
 
-$('#submit_logo').on('click', function() {
-  console.log($('input[name="logo_url"]').val());
-    $("#team_logo").attr("src", $('input[name="logo_url"]').val());
+$('.submit_logo').on('click', function() {
+    $(".team_logo").attr("src", $('input[name="logo_url"]').val());
 });
 
 });

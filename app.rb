@@ -86,6 +86,8 @@ def create_languages
   Language.create({name: "C++", icon: "<i class='devicon-cplusplus-plain colored'></i>"})
 end
 
+create_languages
+
 get '/' do
   create_languages
   if logged_in?
@@ -273,7 +275,7 @@ get '/teams/:id/join' do
   team = Team.find(params[:id].to_i)
   user = User.find(session[:id])
   user.teams.push(team)
-  redirect 'teams/:id'
+  redirect '/teams/'.concat(params[:id])
 end
 
 get '/search' do
@@ -307,7 +309,7 @@ end
 
 delete '/home/posts/:id' do
   post = Post.find(params[:id].to_i)
-  post.delete
+  post.destroy
   redirect '/home'
 end
 
@@ -362,7 +364,7 @@ patch '/teams/:id/edit' do
   logo = params[:logo_url]
   bio = params[:team_bio]
   Team.update({name: name, team_info: bio, logo: logo})
-  redirect '/teams/:id'
+  redirect '/teams/'.concat(params[:id])
 end
 
 get '/users/:id/edit' do

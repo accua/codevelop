@@ -33,11 +33,12 @@
                 <div class="row-content">
                   <h4 class="list-group-item-heading"><%= team.name %></h4>
                   <p class="list-group-item-text team-icons"></p>
-                  <ul class="avatars">
-                    <% team.users.each() do |user| %>
-                      <li><img class="circle" src="<%= user.profile_picture %>" alt="icon"></li>
-                    <% end %>
-                  </ul>
+                  <% team.users.each() do |user| %>
+                    <div class="avatars">
+                      <p><%= user.user_name %></p>
+                      <img class="circle" src="<%= user.profile_picture %>" alt="icon">
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
