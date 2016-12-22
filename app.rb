@@ -283,16 +283,16 @@ get '/users/:id' do
   @user = User.find(session[:id].to_i)
   @following = User.find(params[:id].to_i)
   @user.followings.create({following_id: @following.id.to_i})
-
-  @user = Lanuage.all()
+  # 
+  # @user = Lanuage.all()
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
 end
 
 
-get '/users/:id/profile_edit' do
+get '/users/:id/edit' do
   Language.get_icon
-
+  @languages = Language.all
   erb :profile_edit
 end
 
@@ -302,13 +302,11 @@ patch '/users/:id' do
   work = params.fetch("work")
   bio = params.fetch("bio")
   picture = params.fetch("profile_picture")
-
-
   @user = User.find(session[:id])
   @user.languages.each do |language|
     language.destroy
   end
-  params[:language].each do |language|
+  params[:languages].each do |language|
     @user.language.push(Language.find(language))
   end
   erb :profile
