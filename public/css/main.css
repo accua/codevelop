@@ -212,7 +212,7 @@ li {
 }
 
 .inbox-names {
-  padding: 7px 0 7px 5px;
+  padding: 7px 0 7px 0;
 }
 
 .inbox-names:hover, .inbox-names.active  {
@@ -223,5 +223,9 @@ li {
   color: #fff;
 }
 
+.underline {
+  border-bottom: 2px solid #00796b;
+  margin-bottom: 30px;
+}
 
 /*# sourceMappingURL=main.css.map */

@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row" id="message-top">
     <div class="col s4 l4">
-      <div class="card" id="inbox-list" <% if @users.length > 7 %> style="overflow-y: scroll" <% end %>>
+      <div class="card message-headings" style="text-align: center;" id="inbox-list" <% if @users.length > 7 %> style="overflow-y: scroll" <% end %>>
         <% if @users.any? %>
         <% recent = @users[0] %>
+        <div class="underline">
           <h4>Messages</h4>
+        </div>
           <ul>
               <% @users.each do |user| %>
               <div class="user-names">
@@ -21,8 +23,10 @@
       </div>
     </div>
     <div class="col s8 l8">
-      <div class="card" id="message-center">
-        <h4>Message Center</h4>
+      <div class="card message-headings" style="text-align: center;" id="message-center">
+        <div class="underline">
+          <h4>Message Center</h4>
+        </div>
         <p id="current-message"></p>
       </div>
     </div>
