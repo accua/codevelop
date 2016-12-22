@@ -1,0 +1,37 @@
+<div class="row">
+  <div id="sign-up-form" class="col s4 offset-s4 card">
+    <h3 class="center-text">Join Codevelop</h3>
+    <form action="/sign_up" method="post">
+      <div class="row">
+        <div class="col s10">
+          <div class="input-field">
+            <i class="material-icons prefix small">account_circle</i>
+            <input id="user_name" name="user_name" type="text" class="validate">
+            <label for="user_name">Username</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix small">email</i>
+            <input id="email" name="email"type="text" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix small">lock_open</i>
+            <input id="password1" name="password1" type="password" class="validate" min>
+            <label for="password1">Password</label>
+          </div>
+        </div>
+      </div>
+      <p class="center-text">Sign up or sign up with Github</p>
+      <div class="sign-up-buttons">
+        <input type="hidden" name="profile_picture" value="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSiebfwL0tKyux6WqtrBB8LyXnKK3cI2U5jV84jAsCu6zxuWKMWqZA-rg">
+        <button class="btn waves-effect waves-light secondary-color" type="submit" name="create">Join</button>
+        <a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>"><i class="fa fa-github fa-3x"></i></a>
+      </div>
+    </form>
+    <% if !errors.nil? %>
+    <div class="clearfix"></div>
+      <p class="error"><%= errors %></p>
+      <% session[:errors] = nil %>
+    <% end %>
+  </div>
+</div>

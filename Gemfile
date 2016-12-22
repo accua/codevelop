@@ -3,10 +3,13 @@ source 'https://rubygems.org'
 gem 'sinatra-contrib', :require => 'sinatra/reloader'
 gem 'sinatra-activerecord'
 gem 'rake'
+gem 'dotenv'
 gem 'pg'
 gem 'sinatra'
 gem 'pry'
 gem 'bcrypt'
+gem 'rest-client'
+gem 'json'
 
 group(:test) do
   gem 'rspec'
