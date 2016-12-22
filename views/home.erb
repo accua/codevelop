@@ -45,15 +45,15 @@
   </div>
   <div class="hide">
     <% if @users.any? %>
-    <% @users.each do |user| %>
-    <p><a href="/user/<%= user.id %>"><%= user.user_name %></a></p>
-    <% end %>
+      <% @users.each do |user| %>
+        <p><a href="/user/<%= user.id %>"><%= user.user_name %></a></p>
+      <% end %>
     <% end %>
     <% if @user.followings.any? %>
-    <% @user.followings.each do |following| %>
-    <% user = User.find(following.following_id.to_i) %>
-    <%= user.user_name %>
-    <% end %>
+      <% @user.followings.each do |following| %>
+        <% user = User.find(following.following_id.to_i) %>
+        <%= user.user_name %>
+      <% end %>
     <% end %>
   </div>
 </div>

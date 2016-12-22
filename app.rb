@@ -264,11 +264,22 @@ post '/post_content' do
 end
 
 get '/user/:id' do
-  @user = User.find(session[:id].to_i)
-  @following = User.find(params[:id].to_i)
-  @user.followings.create({following_id: @following.id.to_i})
+  @user = User.find(params[:id].to_i)
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
+end
+
+get '/user/:id/follow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  @user.followings.each do |following|
+    if following.following_id == @user.id
+      redirect '/user/'.concat(@following.to_s)
+    end
+  end
+  @user.followings.create({following_id: @following.id.to_i})
+  @following.followers.create({follower_id: @user.id.to_i})
+  redirect '/user/'.concat(@following.id.to_s)
 end
 # get '/teams/:id' do
 #

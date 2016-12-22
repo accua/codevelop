@@ -536,3 +536,24 @@ li {
   width: 180px;
   margin: 5px;
 }
+
+.tabs .tab a:hover {
+  color: #009987;
+}
+
+.tabs .tab a.active {
+  color: #00796b;
+}
+
+.tabs .tab a {
+  color: #00796b;
+  font-size: 18px;
+}
+
+.tabs .indicator {
+  background-color: #00796b;
+}
+
+.follow {
+  margin-bottom: 143px;
+}
