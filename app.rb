@@ -89,6 +89,7 @@ end
 create_languages
 
 get '/' do
+  create_languages
   if logged_in?
     redirect '/home'
   end
@@ -204,12 +205,13 @@ get '/callback' do
 end
 
 get '/conversation/:id' do
-  @user = User.find(params[:id])
+  @user = current_user
+  @messager = User.find(params[:id])
   erb :conversation, :layout => (request.xhr? ? false : :layout)
 end
 
 get '/messages' do
-  user = User.find(session[:id])
+  user = current_user
   @users = []
   user.messages.each do |message|
     if message.sender_id != user.id && !@users.include?(User.find(message.sender_id.to_i))
@@ -218,7 +220,7 @@ get '/messages' do
         @users.push(User.find(message.receiver_id.to_i))
     end
   end
-  session[:recent]? @recent = session[:recent] : false
+  session[:recent]? @messager = session[:recent] : false
   erb :messages
 end
 
@@ -232,7 +234,7 @@ get '/message/:id/new' do
 end
 
 post '/message' do
-  @user = User.find(session[:id])
+  @user = current_user
   receiver = User.find_by(email: params[:receiver_id])
   if receiver.nil?
     receiver = User.find_by(user_name: params[:receiver_id])
@@ -247,7 +249,8 @@ post '/message' do
 end
 
 get '/recent_message' do
-  @user = User.find(session[:recent])
+  @user = current_user
+  @messager = User.find(session[:recent])
   erb :recent_conversation, :layout => (request.xhr? ? false : :layout)
 end
 
@@ -315,14 +318,38 @@ end
 # end
 
 get '/users/:id' do
-  @user = User.find(session[:id].to_i)
-  @following = User.find(params[:id].to_i)
-  @user.followings.create({following_id: @following.id.to_i})
-  #
-  # @user = Lanuage.all()
-
+  @user = User.find(params[:id].to_i)
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
+end
+
+get '/users/:id/follow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  # @user.followings.each do |following|
+  #   if following.following_id == @user.id
+  #     redirect '/user/'.concat(@following.to_s)
+  #   end
+  # end
+  @user.followings.create({following_id: @following.id.to_i})
+  @following.followers.create({follower_id: @user.id.to_i})
+  redirect '/users/'.concat(@following.id.to_s)
+end
+
+get '/users/:id/unfollow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  @user.followings.each do |follow|
+    if @following.id == follow.following_id
+      @user.followings.destroy(follow.id)
+    end
+  end
+  @following.followers.each do |follow|
+    if @user.id == follow.follower_id
+      @following.followers.destroy(follow.id)
+    end
+  end
+  redirect '/users/'.concat(@following.id.to_s)
 end
 
 
@@ -352,14 +379,26 @@ patch '/users/:id' do
   work = params.fetch("work")
   bio = params.fetch("bio")
   picture = params.fetch("profile_picture")
+  languages = params[:languages]
   @user = User.find(session[:id])
-  @user.languages.each do |language|
-    language.destroy
-  end
-  params[:languages].each do |language|
-    @user.language.push(Language.find(language))
+  # @user.languages.each do |language|
+  #   language.destroy
+  # end
+  languages.each do |language|
+    new_language = Language.find(language.to_i)
+    binding.pry
+    @user.languages.push(new_language)
   end
   erb :profile
+end
+
+post '/comment' do
+  content = params[:content]
+  post_id = params[:post_id].to_i
+  current_user = params[:current_user].to_i
+  post = Post.find(post_id)
+  post.comments.create({user_id: current_user, post_id: post_id, content: content})
+  redirect '/home'
 end
 
 # get '/teams/:id' do

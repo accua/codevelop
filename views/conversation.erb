@@ -1,3 +1,5 @@
 <% @user.messages.each do |message| %>
-  <li <% if User.find(message.sender_id).user_name != @user.user_name %> class="user-message" <% else %> class="receiver-message" <% end %>><%= User.find(message.sender_id).user_name %>: <%= message.content %></li>
+  <% if @messager.messages.include?(message) %>
+    <li <% if message.sender_id == @user.id %> class="user-message" <% else %> class="receiver-message" <% end %>> <%= message.content %></li>
+  <% end %>
 <% end %>

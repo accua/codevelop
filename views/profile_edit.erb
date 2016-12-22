@@ -12,14 +12,14 @@
               <div class="row">
                 <div class="col s12 m6 l6">
                   <div class="input-field">
-                    <input id="user_name" name="user_name" type="text" class="validate">
-                    <label for="user_name"><%= @user.user_name %></label>
+                    <input placeholder="<%= @user.user_name %>" id="user_name" name="user_name" type="text" class="validate" value="<% if !@user.nil? %><%= @user.user_name %><% end %>">
+                    <label for="user_name">Username</label>
                   </div>
                 </div>
                 <div class="col s12 m6 l6">
                   <div class="input-field">
-                    <input id="email" name="email" type="text" class="validate">
-                    <label class="active" for="email"><%= @user.email %></label>
+                    <input placeholder="<%= @user.email %>" id="email" name="email" type="text" class="validate" value="<% if !@user.nil? %><%= @user.email %><% end %>">
+                    <label class="active" for="email">Email</label>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
               <div class="row">
                 <div class="col s12 m6 l6">
                   <div class="input-field">
-                    <input id="work" type="text" name="work" class="validate">
+                    <input placeholder="<%= @user.job_history %>" id="work" type="text" name="work" class="validate" value="<% if !@user.nil? %><%= @user.job_history %><% end %>">
                   </div>
                 </div>
               </div>
@@ -50,8 +50,8 @@
                 <div class="row">
                   <div class="col s12 m6 l12">
                     <div class="input-field">
-                      <textarea id="bio" name="bio" class="materialize-textarea" length="250"></textarea>
-                      <label for="bio"><%= @user.bio %></label>
+                      <textarea placeholder="<%= @user.bio %>" id="bio" name="bio" class="materialize-textarea" length="250" value="<% if !@user.nil? %><%= @user.bio %><% end %>"></textarea>
+                      <label for="bio">Bio</label>
                     </div>
                   </div>
                 </div>
@@ -81,22 +81,21 @@
                   </select>
               </div>
             </div>
-              <div class="input-field col s12 m6 l8">
-                <span class="card-title languages">Choose languages</span>
-                <div class="row">
-                  <% @languages.each do |language| %>
-                    <div class="col s2">
-                      <div class="checkbox">
-                          <input type="checkbox" name="languages[]" value="<%= language.id %>">
-                          <label><%= language.icon() %></label>
-                      </div>
-                    </div>
-                    <% end %>
+            <div class="input-field col s12 m6 l8">
+              <span class="card-title languages">Choose languages</span>
+              <div class="row">
+
+              <% @languages.each do |language| %>
+                <div class="col s2">
+                  <input type="checkbox" id="<%= language.id %>" name="languages[]" value="<%= language.id %>">
+                  <label class="prog-icon" for="<%= language.id %>"><%= language.icon() %></label>
                 </div>
+                <% end %>
               </div>
+            </div>
             <div class="row">
               <div class="col s12 m12 l12">
-                <button class="btn btn-raised" type="submit" name="action">Create Profile</button>
+                <button class="btn btn-raised" type="submit" name="action">Update Profile</button>
                 <br>
               </div>
             </div>

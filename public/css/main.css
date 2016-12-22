@@ -128,8 +128,9 @@ input[type='search'] {
 }
 
 /*profile Creat/edt styling--------------------------------*/
-.prog-icon  {
+.prog-icon, label.prog-icon  {
 font-size: 3rem;
+margin: 10px;
 }
 
 
@@ -140,8 +141,7 @@ font-size: 3rem;
 
 .icons {
   display: inline-block;
-  height: 35px;
-  width: 35px;
+  margin: 10px;
 }
 
 .caption h5 {
@@ -593,4 +593,25 @@ a{
 
 a:hover {
   text-decoration: underline;
+}
+
+.tabs .tab a:hover {
+  color: #009987;
+}
+
+.tabs .tab a.active {
+  color: #00796b;
+}
+
+.tabs .tab a {
+  color: #00796b;
+  font-size: 18px;
+}
+
+.tabs .indicator {
+  background-color: #00796b;
+}
+
+.follow {
+  margin-bottom: 143px;
 }

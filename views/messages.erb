@@ -3,18 +3,18 @@
     <div class="col s4 l4">
       <div class="card message-headings" style="text-align: center;" id="inbox-list" <% if @users.length > 7 %> style="overflow-y: scroll" <% end %>>
         <% if @users.any? %>
-        <% recent = @users[0] %>
-        <div class="underline">
-          <h4>Messages</h4>
-        </div>
+          <% recent = @users[0] %>
+          <div class="underline">
+            <h4>Messages</h4>
+          </div>
           <ul>
-              <% @users.each do |user| %>
+            <% @users.each do |user| %>
               <div class="user-names">
-              <li class="inbox-names">
-                <a class="message-load" href="/conversation/<%= user.id %>" onclick="return ajaxFucnction();"><h5><%= user.user_name %></h5></a>
-              </li>
-            </div>
-              <% end %>
+                <li class="inbox-names">
+                  <a class="message-load" href="/conversation/<%= user.id %>" onclick="return ajaxFucnction();"><h5><%= user.user_name %></h5></a>
+                </li>
+              </div>
+            <% end %>
           </ul>
         <% else %>
           <h4>Messages <a href="/message/new">Write</a></h4>
@@ -30,32 +30,29 @@
         <p id="current-message"></p>
       </div>
     </div>
-      <div class="col s4 l4">
-
-      </div>
-      <div class="col s8 l8">
-        <ul class="collapsible" data-collapsible="accordion" id="create-message">
-          <li>
-            <div class="collapsible-header"><i class="material-icons prefix">input</i>New Message</div>
-            <div class="collapsible-body">
-                <form action="/message" method="post">
-                  <div class="row">
-                  <div class="input-field col s10 offset-s1">
-                    <i class="material-icons prefix">textsms</i>
-                    <input type="text" name="receiver_id" id="autocomplete-input" class="autocomplete" autocomplete="off" <% if !@recent.nil? %> value="<%= User.find(@recent).user_name %>"<% end %> required>
-                    <label for="autocomplete-input">Recipient</label>
-                  </div>
-                  <div class="input-field col s10 offset-s1">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="textarea1" name="content" class="materialize-textarea" required></textarea>
-                    <label for="textarea1">Message</label>
-                  </div>
-                  <div class="col s3 offset-s1">
-                    <button class="waves-effect waves-light btn" type="submit" name="button"><i class="fa fa-paper-plane fa-lg"></i>  Send</button>
-                  </div>
+    <div class="col s8 l8 offset-s4 offset-l4">
+      <ul class="collapsible" data-collapsible="accordion" id="create-message">
+        <li>
+          <div class="collapsible-header"><i class="material-icons prefix">input</i>New Message</div>
+          <div class="collapsible-body">
+              <form action="/message" method="post">
+                <div class="row">
+                <div class="input-field col s10 offset-s1">
+                  <i class="material-icons prefix">textsms</i>
+                  <input type="text" name="receiver_id" id="autocomplete-input" class="autocomplete" autocomplete="off" <% if !@recent.nil? %> value="<%= User.find(@recent).user_name %>"<% end %> required>
+                  <label for="autocomplete-input">Recipient</label>
                 </div>
-                </form>
-            </div>
+                <div class="input-field col s10 offset-s1">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea id="textarea1" name="content" class="materialize-textarea" required></textarea>
+                  <label for="textarea1">Message</label>
+                </div>
+                <div class="col s3 offset-s1">
+                  <button class="waves-effect waves-light btn" type="submit" name="button"><i class="fa fa-paper-plane fa-lg"></i>  Send</button>
+                </div>
+              </div>
+              </form>
+          </div>
           </li>
         </ul>
       </div>

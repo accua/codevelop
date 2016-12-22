@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def following?(id)
+    is_following = nil
+    self.followings.each { |following| following.following_id == id ? is_following = true : false}
+    is_following
+  end
+
   def log_on
     self.online = true
     self.save
