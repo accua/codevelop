@@ -95,17 +95,18 @@
       </div>
       <div class="card">
         <h5>Github Repos</h5>
-          <% if !authenticated? %>
+          <!-- <% if !authenticated? %>
             <p>It looks like we don't have access to your github. Would you like to display your repositories?</p>
             <div class="sign-up-buttons">
               <a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>"><i class="fa fa-github fa-3x"></i></a>
             </div>
-          <% end %>
+          <% end %> -->
           <ul>
             <% @user.repos.each do |repo| %>
               <li><a href="<%= repo.url %>" target="_blank"><%= repo.name %></a></li>
             <% end %>
           </ul>
+          <p><% if @user.repos.length == 0 %>Looks like you didn't connect to Github<%end%></p>
       </div>
       <% @user.posts.each do |post| %>
         <% if post.user_id == @user.id %>
