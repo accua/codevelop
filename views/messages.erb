@@ -1,16 +1,18 @@
 <div class="container">
   <div class="row" id="message-top">
     <div class="col s4 l4">
-      <div class="card" id="inbox-list" <% if @users.length > 10 %> style="overflow-y: scroll" <% end %>>
+      <div class="card" id="inbox-list" <% if @users.length > 7 %> style="overflow-y: scroll" <% end %>>
         <% if @users.any? %>
         <% recent = @users[0] %>
-          <h4>Messages <a href="/message/new">Write</a></h4>
+          <h4>Messages</h4>
           <ul>
-            <% @users.each do |user| %>
-              <li>
+              <% @users.each do |user| %>
+              <div class="user-names">
+              <li class="inbox-names">
                 <a class="message-load" href="/conversation/<%= user.id %>" onclick="return ajaxFucnction();"><h5><%= user.user_name %></h5></a>
               </li>
-            <% end %>
+            </div>
+              <% end %>
           </ul>
         <% else %>
           <h4>Messages <a href="/message/new">Write</a></h4>
@@ -58,6 +60,10 @@
 
 <script type="text/javascript">
 $(function() {
+  $('.inbox-names').click(function() {
+    $('.inbox-names').removeClass('active');
+    $(this).addClass('active');
+  });
   $.get('/recent_message', function(result){
     $('#current-message').html(result);
   });

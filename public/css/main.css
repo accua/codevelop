@@ -182,4 +182,46 @@ input[type='search'] {
 li {
   list-style: none;
 }
+
+.user-message {
+  background-color: #00796b;
+  color: #fff;
+  margin-left: 50%;
+  margin-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 40px;
+  font-size: 18px;
+}
+
+.receiver-message {
+  background-color: #9E9E9E;
+  max-width: 40%;
+  color: #fff;
+  margin-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 40px;
+  font-size: 18px;
+}
+
+.message-load {
+  color: #00796b;
+}
+
+.inbox-names {
+  padding: 7px 0 7px 5px;
+}
+
+.inbox-names:hover, .inbox-names.active  {
+  background-color: #9E9E9E;
+}
+
+.inbox-names:hover a, .inbox-names.active a {
+  color: #fff;
+}
+
+
 /*# sourceMappingURL=main.css.map */
