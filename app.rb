@@ -38,7 +38,7 @@ def repos(user)
                             {:params => {:access_token => access_token},
                             :accept => :json}))
   6.times do |time|
-    user.repos.create({name: all_repos[time]['name'], url: all_repos[time]['url'], language: all_repos[time]['language']})
+    user.repos.create({name: all_repos[time]['name'], url: all_repos[time]['html_url'], language: all_repos[time]['language']})
   end
 end
 
@@ -71,7 +71,25 @@ def login
   end
 end
 
+def get_icon
+  Language.create({name: "Ruby", icon: "<i class='devicon-ruby-plain colored'></i>"})
+  Language.create({name: "Javascript" icon: "<i class='devicon-javascript-plain colored'></i>"})
+  Language.create({name: "C#" icon: "<i class='devicon-csharp-plain colored'></i>"})
+  Language.create({name: "HTML" icon: "<i class='devicon-html5-plain colored'></i>"})
+  Language.create({name: "Java" icon: "<i class='devicon-java-plain colored'></i>"})
+  Language.create({name: "Rails" icon: "<i class='devicon-rails-plain colored'></i>"})
+  Language.create({name: "Angular" icon: "<i class='devicon-angularjs-plain colored'></i>"})
+  Language.create({name: "CSS" icon: "<i class='devicon-css3-plain colored'></i>"})
+  Language.create({name: "NodeJs" icon: "<i class='devicon-nodejs-plain colored'></i>"})
+  Language.create({name: "PHP" icon: "<i class='devicon-php-plain colored'></i>"})
+  Language.create({name: "Android" icon: "<i class='devicon-android-plain colored'></i>"})
+  Language.create({name: "C++" icon: "<i class='devicon-cplusplus-plain colored'></i>"})
+end
+
 get '/' do
+  if logged_in?
+    redirect '/home'
+  end
   erb :index, :locals => {:client_id => CLIENT_ID}
 end
 
@@ -198,6 +216,7 @@ get '/messages' do
         @users.push(User.find(message.receiver_id.to_i))
     end
   end
+  session[:recent]? @recent = session[:recent] : false
   erb :messages
 end
 
@@ -206,12 +225,19 @@ get '/message/new' do
   erb :message_form
 end
 
+get '/message/:id/new' do
+  erb :message_form, :locals => {:user_id => params[:id]}
+end
+
 post '/message' do
   @user = User.find(session[:id])
   receiver = User.find_by(email: params[:receiver_id])
+  if receiver.nil?
+    receiver = User.find_by(user_name: params[:receiver_id])
+  end
   new_message = Message.create(content: params[:content], receiver_id: receiver.id.to_i, sender_id: @user.id.to_i)
   if @user.messages.push(new_message) && receiver.messages.push(new_message)
-    session[:recent] = User.find_by(email: params[:receiver_id]).id.to_i
+    session[:recent] = receiver.id
     redirect '/messages'
   else
   erb :message_form
@@ -288,11 +314,15 @@ end
 
 get '/users/:id' do
   @user = User.find(session[:id].to_i)
-  # @following = User.find(params[:id].to_i)
-  # @user.followings.create({following_id: @following.id.to_i})
+  @following = User.find(params[:id].to_i)
+  @user.followings.create({following_id: @following.id.to_i})
+  #
+  # @user = Lanuage.all()
+
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
 end
+
 
 get '/teams/:id/edit' do
   @team = Team.find(params[:id].to_i)
@@ -308,10 +338,52 @@ patch '/teams/:id/edit' do
   redirect '/teams/:id'
 end
 
+get '/users/:id/edit' do
+  Language.get_icon
+  @languages = Language.all
+  erb :profile_edit
+end
+
+patch '/users/:id' do
+  user_name = params.fetch("user_name")
+  email = params.fetch("email")
+  work = params.fetch("work")
+  bio = params.fetch("bio")
+  picture = params.fetch("profile_picture")
+  @user = User.find(session[:id])
+  @user.languages.each do |language|
+    language.destroy
+  end
+  params[:languages].each do |language|
+    @user.language.push(Language.find(language))
+  end
+  erb :profile
+end
+
+# get '/teams/:id' do
+#
+# end
+#
+# patch 'teams/:id' do
+#
+# end
+#
 # delete 'teams/:id' do
 #
 # end
 get '/clear' do
   session.clear
   redirect '/'
+end
+
+get '/repos' do
+  access_token = session[:access_token]
+  all_repos = JSON.parse(RestClient.get('https://api.github.com/user/repos',
+                            {:params => {:access_token => access_token},
+                            :accept => :json}))
+  names = []
+  all_repos.each do |repo|
+    names.push(repo['name'])
+  end
+binding.pry
 end

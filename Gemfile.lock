@@ -17,6 +17,7 @@ GEM
     arel (7.1.4)
     backports (3.6.8)
     bcrypt (3.1.11)
+    bcrypt (3.1.11-x86-mingw32)
     capybara (2.11.0)
       addressable
       mime-types (>= 1.16)
@@ -30,6 +31,7 @@ GEM
     domain_name (0.5.20161129)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
+    ffi (1.9.14-x86-mingw32)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -44,7 +46,10 @@ GEM
     netrc (0.11.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    nokogiri (1.6.8.1-x86-mingw32)
+      mini_portile2 (~> 2.1.0)
     pg (0.19.0)
+    pg (0.19.0-x86-mingw32)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -58,6 +63,11 @@ GEM
     rake (12.0.0)
     rb-readline (0.5.3)
     rest-client (2.0.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
+    rest-client (2.0.0-x86-mingw32)
+      ffi (~> 1.9)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
@@ -98,11 +108,13 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    unf_ext (0.0.7.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   bcrypt
