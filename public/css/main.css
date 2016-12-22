@@ -531,3 +531,8 @@ li {
   display: table;
   clear: both;
 }
+
+.user-buttons a{
+  width: 180px;
+  margin: 5px;
+}
