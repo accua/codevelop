@@ -517,7 +517,6 @@ li {
     color: #00695C;
 }
 
-
 .post .card-title h4{
   position: relative;
   top: -10px;
@@ -541,6 +540,22 @@ li {
   margin: 5px;
 }
 
+.btn, .btn-large, .btn-flat {
+  margin: 10px;
+}
+
+#top-team-button-margin {
+  margin-top: 10px;
+}
+
+#join-button-padding {
+  padding-left: 37px;
+  padding-right: 37px;
+}
+
+.inline {
+  display: inline;
+
 .online-users {
   min-height: 40vh;
 }
@@ -563,4 +578,25 @@ a{
 
 a:hover {
   text-decoration: underline;
+}
+
+.tabs .tab a:hover {
+  color: #009987;
+}
+
+.tabs .tab a.active {
+  color: #00796b;
+}
+
+.tabs .tab a {
+  color: #00796b;
+  font-size: 18px;
+}
+
+.tabs .indicator {
+  background-color: #00796b;
+}
+
+.follow {
+  margin-bottom: 143px;
 }

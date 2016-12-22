@@ -71,6 +71,21 @@ def login
   end
 end
 
+def get_icon
+  Language.create({name: "Ruby", icon: "<i class='devicon-ruby-plain colored'></i>"})
+  Language.create({name: "Javascript", icon: "<i class='devicon-javascript-plain colored'></i>"})
+  Language.create({name: "C#", icon: "<i class='devicon-csharp-plain colored'></i>"})
+  Language.create({name: "HTML", icon: "<i class='devicon-html5-plain colored'></i>"})
+  Language.create({name: "Java", icon: "<i class='devicon-java-plain colored'></i>"})
+  Language.create({name: "Rails", icon: "<i class='devicon-rails-plain colored'></i>"})
+  Language.create({name: "Angular", icon: "<i class='devicon-angularjs-plain colored'></i>"})
+  Language.create({name: "CSS", icon: "<i class='devicon-css3-plain colored'></i>"})
+  Language.create({name: "NodeJs", icon: "<i class='devicon-nodejs-plain colored'></i>"})
+  Language.create({name: "PHP", icon: "<i class='devicon-php-plain colored'></i>"})
+  Language.create({name: "Android", icon: "<i class='devicon-android-plain colored'></i>"})
+  Language.create({name: "C++", icon: "<i class='devicon-cplusplus-plain colored'></i>"})
+end
+
 get '/' do
   if logged_in?
     redirect '/home'
@@ -251,6 +266,13 @@ post '/teams/:id' do
   redirect '/team/:id'
 end
 
+get '/teams/:id/join' do
+  team = Team.find(params[:id].to_i)
+  user = User.find(session[:id])
+  user.teams.push(team)
+  redirect 'teams/:id'
+end
+
 get '/search' do
   if params[:query]
     search = params[:query] + "%"
@@ -268,7 +290,7 @@ get '/teams' do
 end
 
 get '/teams/:id' do
-  @team = Team.find(3)
+  @team = Team.find(params[:id].to_i)
   erb :team
 end
 
@@ -280,14 +302,92 @@ post '/post_content' do
   redirect '/home'
 end
 
+delete '/home/posts/:id' do
+  post = Post.find(params[:id].to_i)
+  post.delete
+  redirect '/home'
+end
+
+# patch '/posts/:id' do
+#
+# end
+
 get '/users/:id' do
   @user = User.find(params[:id].to_i)
-  # @following = User.find(params[:id].to_i)
-  # @user.followings.create({following_id: @following.id.to_i})
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
 end
 
+get '/users/:id/follow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  # @user.followings.each do |following|
+  #   if following.following_id == @user.id
+  #     redirect '/user/'.concat(@following.to_s)
+  #   end
+  # end
+  @user.followings.create({following_id: @following.id.to_i})
+  @following.followers.create({follower_id: @user.id.to_i})
+  redirect '/users/'.concat(@following.id.to_s)
+end
+
+get '/users/:id/unfollow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  @user.followings.each do |follow|
+    if @following.id == follow.following_id
+      @user.followings.destroy(follow.id)
+    end
+  end
+  @following.followers.each do |follow|
+    if @user.id == follow.follower_id
+      @following.followers.destroy(follow.id)
+    end
+  end
+  redirect '/users/'.concat(@following.id.to_s)
+end
+
+
+get '/teams/:id/edit' do
+  @team = Team.find(params[:id].to_i)
+  erb :team_edit
+end
+
+patch '/teams/:id/edit' do
+  @team = Team.find(params[:id].to_i)
+  name = params[:team_name]
+  logo = params[:logo_url]
+  bio = params[:team_bio]
+  Team.update({name: name, team_info: bio, logo: logo})
+  redirect '/teams/:id'
+end
+
+get '/users/:id/edit' do
+  Language.get_icon
+  @languages = Language.all
+  erb :profile_edit
+end
+
+patch '/users/:id' do
+  user_name = params.fetch("user_name")
+  email = params.fetch("email")
+  work = params.fetch("work")
+  bio = params.fetch("bio")
+  picture = params.fetch("profile_picture")
+  @user = User.find(session[:id])
+  @user.languages.each do |language|
+    language.destroy
+  end
+  params[:languages].each do |language|
+    @user.language.push(Language.find(language))
+  end
+  erb :profile
+end
+
+# get '/teams/:id' do
+#
+# end
+#
 # patch 'teams/:id' do
 #
 # end
