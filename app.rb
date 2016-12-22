@@ -71,20 +71,22 @@ def login
   end
 end
 
-def get_icon
+def create_languages
   Language.create({name: "Ruby", icon: "<i class='devicon-ruby-plain colored'></i>"})
-  Language.create({name: "Javascript" icon: "<i class='devicon-javascript-plain colored'></i>"})
-  Language.create({name: "C#" icon: "<i class='devicon-csharp-plain colored'></i>"})
-  Language.create({name: "HTML" icon: "<i class='devicon-html5-plain colored'></i>"})
-  Language.create({name: "Java" icon: "<i class='devicon-java-plain colored'></i>"})
-  Language.create({name: "Rails" icon: "<i class='devicon-rails-plain colored'></i>"})
-  Language.create({name: "Angular" icon: "<i class='devicon-angularjs-plain colored'></i>"})
-  Language.create({name: "CSS" icon: "<i class='devicon-css3-plain colored'></i>"})
-  Language.create({name: "NodeJs" icon: "<i class='devicon-nodejs-plain colored'></i>"})
-  Language.create({name: "PHP" icon: "<i class='devicon-php-plain colored'></i>"})
-  Language.create({name: "Android" icon: "<i class='devicon-android-plain colored'></i>"})
-  Language.create({name: "C++" icon: "<i class='devicon-cplusplus-plain colored'></i>"})
+  Language.create({name: "Javascript", icon: "<i class='devicon-javascript-plain colored'></i>"})
+  Language.create({name: "C#", icon: "<i class='devicon-csharp-plain colored'></i>"})
+  Language.create({name: "HTML", icon: "<i class='devicon-html5-plain colored'></i>"})
+  Language.create({name: "Java", icon: "<i class='devicon-java-plain colored'></i>"})
+  Language.create({name: "Rails", icon: "<i class='devicon-rails-plain colored'></i>"})
+  Language.create({name: "Angular", icon: "<i class='devicon-angularjs-plain colored'></i>"})
+  Language.create({name: "CSS", icon: "<i class='devicon-css3-plain colored'></i>"})
+  Language.create({name: "NodeJs", icon: "<i class='devicon-nodejs-plain colored'></i>"})
+  Language.create({name: "PHP", icon: "<i class='devicon-php-plain colored'></i>"})
+  Language.create({name: "Android", icon: "<i class='devicon-android-plain colored'></i>"})
+  Language.create({name: "C++", icon: "<i class='devicon-cplusplus-plain colored'></i>"})
 end
+
+create_languages
 
 get '/' do
   if logged_in?
@@ -270,7 +272,7 @@ get '/teams/:id/join' do
   team = Team.find(params[:id].to_i)
   user = User.find(session[:id])
   user.teams.push(team)
-  redirect 'teams/:id'
+  redirect '/teams/'.concat(params[:id])
 end
 
 get '/search' do
@@ -304,7 +306,7 @@ end
 
 delete '/home/posts/:id' do
   post = Post.find(params[:id].to_i)
-  post.delete
+  post.destroy
   redirect '/home'
 end
 
@@ -335,11 +337,11 @@ patch '/teams/:id/edit' do
   logo = params[:logo_url]
   bio = params[:team_bio]
   Team.update({name: name, team_info: bio, logo: logo})
-  redirect '/teams/:id'
+  redirect '/teams/'.concat(params[:id])
 end
 
 get '/users/:id/edit' do
-  Language.get_icon
+  @user = User.find(session[:id])
   @languages = Language.all
   erb :profile_edit
 end

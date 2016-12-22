@@ -31,12 +31,12 @@
         <p>You newb! Maybe you should brush up on a couple languages..</p>
       </div>
       <div class="card">
-        <div class="card-header"><h5>Members</h5></div>
+        <div class="card-header"><h5>Members:</h5></div>
         <% @team.users.each() do |user| %>
-          <h4 class="list-group-item-heading"><%= user.user_name %></h4>
-          <ul class="avatars">
-            <li><img class="circle" src="<%= user.profile_picture %>" alt="icon"></li>
-          </ul>
+        <div class="avatars">
+          <h5><%= user.user_name %></h5>
+          <img class="circle" src="<%= user.profile_picture %>" alt="icon">
+          </div>
         <% end %>
       </div>
     </div>
