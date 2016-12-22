@@ -13,7 +13,6 @@ if ENV['GH_BASIC_CLIENT_ID'] && ENV['GH_BASIC_SECRET_ID']
  CLIENT_ID        = ENV['GH_BASIC_CLIENT_ID']
  CLIENT_SECRET    = ENV['GH_BASIC_SECRET_ID']
 end
-
 use Rack::Session::Pool, :cookie_only => false
 
 def authenticated?
@@ -61,7 +60,7 @@ post '/sign_up' do
     @user.password = params[:password1]
     if @user.save!
     session[:id] = @user.id
-    redirect to '/users/home'
+    redirect to '/home'
     else
       session[:error] = "There was a problem saving your profile"
       redirect '/sign_up'
@@ -71,6 +70,15 @@ end
 
 get '/home' do
   @user = User.find(session[:id])
+  @users = User.all
+  @posts = []
+  @user.followings.each do |following|
+    follow = User.find(following.user_id.to_i)
+    follow.posts.each do |post|
+      @posts.push(post)
+    end
+  end
+  binding.pry
   erb :home
 end
 
@@ -211,6 +219,20 @@ get '/teams' do
   erb :teams
 end
 
+post '/post_content' do
+  @user = User.find(session[:id])
+  content = params[:content]
+  new_post = Post.create(content: content)
+  @user.posts.push(new_post)
+  redirect '/home'
+end
+
+get '/user/:id' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  @user.followings.create({following_id: @following.id.to_i})
+  redirect '/home'
+end
 # get '/teams/:id' do
 #
 # end
