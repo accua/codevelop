@@ -116,7 +116,6 @@ get '/github' do
       # index page so that the user can start the OAuth flow again
 
       session[:access_token] = nil
-      binding.pry
       return authenticate!
     end
 

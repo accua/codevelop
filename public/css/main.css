@@ -468,3 +468,23 @@ li {
 .online-users .card p {
   margin: 0 0 0 15px;
 }
+
+.search-results h5 {
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.search-results .card {
+  min-height: 30vh;
+}
+
+.search-photo {
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+}
+
+.search-results a {
+  position: relative;
+  top: -20px;
+}
