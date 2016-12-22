@@ -4,6 +4,7 @@ require 'sinatra'
 require 'rest-client'
 require 'json'
 require 'bcrypt'
+require 'pry'
 Dotenv.load
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -255,6 +256,11 @@ get '/teams' do
   erb :teams
 end
 
+get '/teams/:id' do
+  @team = Team.find(3)
+  erb :team
+end
+
 post '/post_content' do
   @user = User.find(session[:id])
   content = params[:content]
@@ -263,17 +269,14 @@ post '/post_content' do
   redirect '/home'
 end
 
-get '/user/:id' do
+get '/users/:id' do
   @user = User.find(session[:id].to_i)
   # @following = User.find(params[:id].to_i)
   # @user.followings.create({following_id: @following.id.to_i})
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
 end
-# get '/teams/:id' do
-#
-# end
-#
+
 # patch 'teams/:id' do
 #
 # end
