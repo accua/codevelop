@@ -84,7 +84,9 @@
           </div>
         </div>
         <% @user.posts.each do |post| %>
-        <% post_user = User.find(post.user_id.to_i) %>
+        <% if post.user_id == @user.id %>
+          <% post_user = User.find(post.user_id.to_i) %>
+        <%end %>
           <div class="card post">
             <span class="card-title"><img class="post_img" src="<%= post_user.profile_picture%>"><h4><%= post_user.user_name %></h4></span>
             <div class="card-content">

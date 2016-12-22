@@ -8,6 +8,10 @@
     </div>
     <div class="col s12 m8 l7">
       <div class="card">
+        <img class="post_img" src="<%= @user.profile_picture %>" alt="">
+        <h5>Hello, <%= @user.user_name %></h5>
+      </div>
+      <div class="card">
         <form action="/post_content" method="post">
           <div class="row">
             <div class="input-field col s10 offset-s1">
@@ -20,9 +24,6 @@
             </div>
           </div>
         </form>
-      </div>
-      <div class="card">
-        <h5>Hello, <%= @user.user_name %></h5>
       </div>
       <% @posts.each do |post| %>
       <% post_user = User.find(post.user_id.to_i) %>

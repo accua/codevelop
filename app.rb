@@ -265,8 +265,8 @@ end
 
 get '/user/:id' do
   @user = User.find(session[:id].to_i)
-  @following = User.find(params[:id].to_i)
-  @user.followings.create({following_id: @following.id.to_i})
+  # @following = User.find(params[:id].to_i)
+  # @user.followings.create({following_id: @following.id.to_i})
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
 end
