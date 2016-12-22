@@ -73,17 +73,17 @@ end
 
 def get_icon
   Language.create({name: "Ruby", icon: "<i class='devicon-ruby-plain colored'></i>"})
-  Language.create({name: "Javascript" icon: "<i class='devicon-javascript-plain colored'></i>"})
-  Language.create({name: "C#" icon: "<i class='devicon-csharp-plain colored'></i>"})
-  Language.create({name: "HTML" icon: "<i class='devicon-html5-plain colored'></i>"})
-  Language.create({name: "Java" icon: "<i class='devicon-java-plain colored'></i>"})
-  Language.create({name: "Rails" icon: "<i class='devicon-rails-plain colored'></i>"})
-  Language.create({name: "Angular" icon: "<i class='devicon-angularjs-plain colored'></i>"})
-  Language.create({name: "CSS" icon: "<i class='devicon-css3-plain colored'></i>"})
-  Language.create({name: "NodeJs" icon: "<i class='devicon-nodejs-plain colored'></i>"})
-  Language.create({name: "PHP" icon: "<i class='devicon-php-plain colored'></i>"})
-  Language.create({name: "Android" icon: "<i class='devicon-android-plain colored'></i>"})
-  Language.create({name: "C++" icon: "<i class='devicon-cplusplus-plain colored'></i>"})
+  Language.create({name: "Javascript", icon: "<i class='devicon-javascript-plain colored'></i>"})
+  Language.create({name: "C#", icon: "<i class='devicon-csharp-plain colored'></i>"})
+  Language.create({name: "HTML", icon: "<i class='devicon-html5-plain colored'></i>"})
+  Language.create({name: "Java", icon: "<i class='devicon-java-plain colored'></i>"})
+  Language.create({name: "Rails", icon: "<i class='devicon-rails-plain colored'></i>"})
+  Language.create({name: "Angular", icon: "<i class='devicon-angularjs-plain colored'></i>"})
+  Language.create({name: "CSS", icon: "<i class='devicon-css3-plain colored'></i>"})
+  Language.create({name: "NodeJs", icon: "<i class='devicon-nodejs-plain colored'></i>"})
+  Language.create({name: "PHP", icon: "<i class='devicon-php-plain colored'></i>"})
+  Language.create({name: "Android", icon: "<i class='devicon-android-plain colored'></i>"})
+  Language.create({name: "C++", icon: "<i class='devicon-cplusplus-plain colored'></i>"})
 end
 
 get '/' do
@@ -296,14 +296,38 @@ post '/post_content' do
 end
 
 get '/users/:id' do
-  @user = User.find(session[:id].to_i)
-  @following = User.find(params[:id].to_i)
-  @user.followings.create({following_id: @following.id.to_i})
-  #
-  # @user = Lanuage.all()
-
+  @user = User.find(params[:id].to_i)
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
+end
+
+get '/users/:id/follow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  # @user.followings.each do |following|
+  #   if following.following_id == @user.id
+  #     redirect '/user/'.concat(@following.to_s)
+  #   end
+  # end
+  @user.followings.create({following_id: @following.id.to_i})
+  @following.followers.create({follower_id: @user.id.to_i})
+  redirect '/users/'.concat(@following.id.to_s)
+end
+
+get '/users/:id/unfollow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  @user.followings.each do |follow|
+    if @following.id == follow.following_id
+      @user.followings.destroy(follow.id)
+    end
+  end
+  @following.followers.each do |follow|
+    if @user.id == follow.follower_id
+      @following.followers.destroy(follow.id)
+    end
+  end
+  redirect '/users/'.concat(@following.id.to_s)
 end
 
 get '/users/:id/edit' do

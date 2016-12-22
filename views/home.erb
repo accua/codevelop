@@ -1,19 +1,12 @@
 <div class="container content">
   <div class="row">
-    <div class="git-commits col s12 m4 l4">
-    <!-- <div class="git-commits col s12 m4 l3"> -->
-      <!-- <div class="card">
+    <div class="git-commits col s12 m4 l3">
+      <div class="card">
         <h5>Left sidebar</h5>
         <p>Occupy kitsch plaid cornhole tattooed sartorial four dollar toast pour-over. Irony tilde retro, messenger bag hammock gluten-free seitan +1 intelligentsia literally. Chicharrones ramps forage, vegan tousled wayfarers franzen. Biodiesel heirloom migas umami cold-pressed</p>
-      </div> -->
-      <div class="card online-users">
-        <h5 class="center-align">Online users</h5>
-        <% @online_users.each do |user| %>
-        <a href="/users/<%= user.id %>"><i class="fa fa-user"></i><%= user.user_name %></a>
-        <% end %>
       </div>
     </div>
-    <div class="col s12 m8 l8">
+    <div class="col s12 m8 l7">
       <div class="card">
         <img class="post_img" src="<%= @user.profile_picture %>" alt="">
         <h5>Hello, <%= @user.user_name %></h5>
@@ -42,13 +35,13 @@
         </div>
       <% end %>
     </div>
-    <!-- <div class="online-users col l2 hide-on-med-and-down">
-      <div class="card">
-        <h6>Online users</h6>
+    <div class="col l2 hide-on-med-and-down">
+      <div class="card online-users">
+        <h6 class="center-align">Online users</h6>
         <% @online_users.each do |user| %>
-          <i class="fa fa-user"></i><p><%= user.user_name %></p>
+        <a href="/users/<%= user.id %>"><i class="fa fa-user"></i><%= user.user_name %></a>
         <% end %>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>
