@@ -38,7 +38,7 @@ def repos(user)
                             {:params => {:access_token => access_token},
                             :accept => :json}))
   6.times do |time|
-    user.repos.create({name: all_repos[time]['name'], url: all_repos[time]['url'], language: all_repos[time]['language']})
+    user.repos.create({name: all_repos[time]['name'], url: all_repos[time]['html_url'], language: all_repos[time]['language']})
   end
 end
 
@@ -298,4 +298,16 @@ end
 get '/clear' do
   session.clear
   redirect '/'
+end
+
+get '/repos' do
+  access_token = session[:access_token]
+  all_repos = JSON.parse(RestClient.get('https://api.github.com/user/repos',
+                            {:params => {:access_token => access_token},
+                            :accept => :json}))
+  names = []
+  all_repos.each do |repo|
+    names.push(repo['name'])
+  end
+binding.pry
 end

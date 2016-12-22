@@ -32,8 +32,8 @@
         data: {
           <% User.all.each do |user| %>
             <% if user.id != session[:id] %>
-              "<%= user.user_name %>": "user.profile_picture",
-              "<%= user.email %>": "user.profile_picture",
+              "<%= user.user_name %>": "<%= user.profile_picture %>",
+              "<%= user.email %>": "<%= user.profile_picture %>",
             <% end %>
           <% end %>
         }

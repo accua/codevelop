@@ -82,6 +82,11 @@
                 <a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>"><i class="fa fa-github fa-3x"></i></a>
               </div>
             <% end %>
+            <ul>
+              <% @user.repos.each do |repo| %>
+                <li><a href="<%= repo.url %>" target="_blank"><%= repo.name %></a></li>
+              <% end %>
+            </ul>
           </div>
         </div>
         <% @user.posts.each do |post| %>
