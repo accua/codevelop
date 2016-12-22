@@ -4,6 +4,7 @@ require 'sinatra'
 require 'rest-client'
 require 'json'
 require 'bcrypt'
+require 'pry'
 Dotenv.load
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -37,7 +38,7 @@ def repos(user)
                             {:params => {:access_token => access_token},
                             :accept => :json}))
   6.times do |time|
-    user.repos.create({name: all_repos[time]['name'], url: all_repos[time]['url'], language: all_repos[time]['language']})
+    user.repos.create({name: all_repos[time]['name'], url: all_repos[time]['html_url'], language: all_repos[time]['language']})
   end
 end
 
@@ -86,6 +87,9 @@ def get_icon
 end
 
 get '/' do
+  if logged_in?
+    redirect '/home'
+  end
   erb :index, :locals => {:client_id => CLIENT_ID}
 end
 
@@ -212,6 +216,7 @@ get '/messages' do
         @users.push(User.find(message.receiver_id.to_i))
     end
   end
+  session[:recent]? @recent = session[:recent] : false
   erb :messages
 end
 
@@ -220,12 +225,19 @@ get '/message/new' do
   erb :message_form
 end
 
+get '/message/:id/new' do
+  erb :message_form, :locals => {:user_id => params[:id]}
+end
+
 post '/message' do
   @user = User.find(session[:id])
   receiver = User.find_by(email: params[:receiver_id])
+  if receiver.nil?
+    receiver = User.find_by(user_name: params[:receiver_id])
+  end
   new_message = Message.create(content: params[:content], receiver_id: receiver.id.to_i, sender_id: @user.id.to_i)
   if @user.messages.push(new_message) && receiver.messages.push(new_message)
-    session[:recent] = User.find_by(email: params[:receiver_id]).id.to_i
+    session[:recent] = receiver.id
     redirect '/messages'
   else
   erb :message_form
@@ -270,6 +282,11 @@ get '/teams' do
   erb :teams
 end
 
+get '/teams/:id' do
+  @team = Team.find(3)
+  erb :team
+end
+
 post '/post_content' do
   @user = User.find(session[:id])
   content = params[:content]
@@ -278,17 +295,16 @@ post '/post_content' do
   redirect '/home'
 end
 
-
 get '/users/:id' do
   @user = User.find(session[:id].to_i)
   @following = User.find(params[:id].to_i)
   @user.followings.create({following_id: @following.id.to_i})
-  # 
+  #
   # @user = Lanuage.all()
+
   erb :profile, :locals => {:client_id => CLIENT_ID}
   # redirect '/home'
 end
-
 
 get '/users/:id/edit' do
   Language.get_icon
@@ -326,4 +342,16 @@ end
 get '/clear' do
   session.clear
   redirect '/'
+end
+
+get '/repos' do
+  access_token = session[:access_token]
+  all_repos = JSON.parse(RestClient.get('https://api.github.com/user/repos',
+                            {:params => {:access_token => access_token},
+                            :accept => :json}))
+  names = []
+  all_repos.each do |repo|
+    names.push(repo['name'])
+  end
+binding.pry
 end

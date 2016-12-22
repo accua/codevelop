@@ -1,0 +1,90 @@
+<div class="container content">
+  <div class="row">
+    <div class="col s8 l4">
+      <div class="card">
+        <div class="card-image">
+          <img src= "<%= @team.logo %>" class="profile-image">
+        </div>
+        <!-- <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div> -->
+        <div class="profile-head">
+          <h5><%= @team.name %> /h5>
+          <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>Location: <span>Portland, Oregon</span></p>
+          <div class="card-action">
+            <a href="javascript:void(0)" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
+            <a href="javascript:void(0)" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-envelope" aria-hidden="true"></i>Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col m8 l8">
+      <div class="card bio">
+      <h5>Our mission:</h5>
+      <p><%= @team.team_info %></p>
+      <h6>Languages Used:</h6>
+      <p>You newb! Maybe you should brush up on a couple languages..</p>
+      </div>
+      </div>
+        <div class="col s12 m8 l8">
+          <div class="card">
+            <h5>Github Repos</h5>
+            <div class="row">
+              <% if !authenticated? %>
+                <button class="btn waves-effect waves-light secondary-color" type="submit" name="create">Authorize Github</button>
+                <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6 m4 l4">
+          <div class="card section2">
+            <div class="card-header">
+            <h5>Members</h5>
+            </div>
+            <% @team.users.each() do |user| %>
+            <div class="row">
+              <div class="list-group">
+                <div class="list-group-item">
+                  <div class="row-content">
+                    <h4 class="list-group-item-heading"><%= user.name %></h4>
+                    <p class="list-group-item-text team-icons"></p>
+                    <ul class="avatars">
+                      <% @team.users.each() do |user| %>
+                      <li><img class="circle" src="<%= user.profile_picture %>" alt="icon"></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="card section2">
+          <div class="card-header">
+            <h5>something</h5>
+          </div>
+              <p>something</p>
+        </div>
+      </div>
+      <div class="col m6 l8">
+        <div class="card section2">
+          <div class="card-header">
+            <h5>News Feed</h5>
+          </div>
+            <p>Sartorial hashtag godard XOXO 8-bit mumblecore. Gastropub wolf semiotics live-edge, kinfolk celiac yuccie meditation selfies forage. Authentic trust fund banh mi affogato, roof party YOLO unicorn pok pok chartreuse before they sold out ethical brunch subway tile kogi. Meditation pop-up cray, franzen craft beer williamsburg twee gentrify lo-fi fanny pack scenester microdosing sriracha. Vegan glossier DIY, knausgaard skateboard craft beer truffaut raw denim lo-fi church-key. Sustainable microdosing chambray, cred fashion axe portland YOLO woke put a bird on it snackwave gastropub pok pok fanny pack. Scenester +1 fingerstache, waistcoat gochujang paleo everyday carry artisan man bun iPhone vinyl celiac.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script type="text/javascript">
+      $(function(){
+        $(".dropdown-button").dropdown();
+        $(".button-collapse").sideNav();
+      })
+    </script>

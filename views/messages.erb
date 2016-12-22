@@ -42,12 +42,12 @@
                   <div class="row">
                   <div class="input-field col s10 offset-s1">
                     <i class="material-icons prefix">textsms</i>
-                    <input type="text" name="receiver_id" id="autocomplete-input" class="autocomplete" autocomplete="off">
+                    <input type="text" name="receiver_id" id="autocomplete-input" class="autocomplete" autocomplete="off" <% if !@recent.nil? %> value="<%= User.find(@recent).user_name %>"<% end %> required>
                     <label for="autocomplete-input">Recipient</label>
                   </div>
                   <div class="input-field col s10 offset-s1">
                     <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="textarea1" name="content" class="materialize-textarea"></textarea>
+                    <textarea id="textarea1" name="content" class="materialize-textarea" required></textarea>
                     <label for="textarea1">Message</label>
                   </div>
                   <div class="col s3 offset-s1">

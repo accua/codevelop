@@ -9,9 +9,10 @@
           <h5><%= @user.user_name %> </h5>
           <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>Location: <span>Portland, Oregon</span></p>
           <div class="card-action user-buttons">
-            <a href="/follow" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
-            <a href="/message/new" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-envelope" aria-hidden="true"></i>Message</a>
-            <% if @user.id == session[:id] %>
+            <% if @user.id != session[:id] %>
+              <a href="/user/<%= @user.id %>/follow" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
+              <a href="/message/<%= @user.id %>/new" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-envelope" aria-hidden="true"></i>Message</a>
+            <% else %>
               <a href="/user/:id/edit" class="btn btn-raised btn-sm btn-warning">Edit profile</a>
             <% end %>
           </div>
@@ -81,10 +82,17 @@
                 <a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>"><i class="fa fa-github fa-3x"></i></a>
               </div>
             <% end %>
+            <ul>
+              <% @user.repos.each do |repo| %>
+                <li><a href="<%= repo.url %>" target="_blank"><%= repo.name %></a></li>
+              <% end %>
+            </ul>
           </div>
         </div>
         <% @user.posts.each do |post| %>
-        <% post_user = User.find(post.user_id.to_i) %>
+        <% if post.user_id == @user.id %>
+          <% post_user = User.find(post.user_id.to_i) %>
+        <%end %>
           <div class="card post">
             <span class="card-title"><img class="post_img" src="<%= post_user.profile_picture%>"><h4><%= post_user.user_name %></h4></span>
             <div class="card-content">

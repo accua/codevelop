@@ -10,6 +10,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'rest-client'
 gem 'json'
+gem 'rb-readline'
 
 group(:test) do
   gem 'rspec'
