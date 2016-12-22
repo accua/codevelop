@@ -72,6 +72,9 @@ def login
 end
 
 get '/' do
+  if logged_in?
+    redirect '/home'
+  end
   erb :index, :locals => {:client_id => CLIENT_ID}
 end
 
@@ -270,7 +273,7 @@ post '/post_content' do
 end
 
 get '/users/:id' do
-  @user = User.find(session[:id].to_i)
+  @user = User.find(params[:id].to_i)
   # @following = User.find(params[:id].to_i)
   # @user.followings.create({following_id: @following.id.to_i})
   erb :profile, :locals => {:client_id => CLIENT_ID}
