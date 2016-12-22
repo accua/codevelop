@@ -137,6 +137,19 @@ get '/callback' do
   redirect '/github'
 end
 
+
+get '/teams/new' do
+  erb :team_create
+end
+
+post '/teams/:id' do
+  name = params[:team_name]
+  logo = params[:logo_url]
+  bio = params[:team_bio]
+  Team.create({name: name, team_info: bio, logo: logo})
+  redirect '/team/:id'
+end
+
 get '/search' do
   if params[:query]
     search = params[:query] + "%"
@@ -146,3 +159,21 @@ get '/search' do
     erb :results
   end
 end
+
+get '/teams' do
+  @teams = Team.all()
+  @user = User.find(session[:id])
+  erb :teams
+end
+
+# get '/teams/:id' do
+#
+# end
+#
+# patch 'teams/:id' do
+#
+# end
+#
+# delete 'teams/:id' do
+#
+# end

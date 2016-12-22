@@ -20,6 +20,7 @@ nav {
     color: #00695c; }
   nav a {
     color: #00695c; }
+
   @media screen and (min-width: 992px) {
     nav form {
       width: 50%;
@@ -40,6 +41,8 @@ nav {
 
 .brand-logo {
   position: relative;
+  width: 56px;
+  height: 48px;
   left: 15px;
   padding: 0 15px; }
   .brand-logo .fa-copyright {
@@ -47,7 +50,7 @@ nav {
     left: 9px; }
   @media screen and (min-width: 767px) {
     .brand-logo {
-      top: -2px; } }
+      top: 2px; } }
 
 .dropdown-content li > a {
   color: #00695c; }
@@ -157,6 +160,14 @@ input[type='search'] {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+.create-team-header {
+  text-align: center;
+}
+
+#team_logo {
+  margin-left: 50px;
 }
 
 /*# sourceMappingURL=main.css.map */
