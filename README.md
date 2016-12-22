@@ -23,7 +23,7 @@ _This is a brand new social networking tool that is coming to the web. Codevelop
 
 ## Technologies Used
 
-_Ruby, Sinatra, SQL, Postgres, ActiveRecord, AJAX, JavaScript, MaterializeCSS, jQuery_
+_Ruby, Sinatra, SQL, Postgres, ActiveRecord, AJAX, JavaScript, jQuery, API integration, MaterializeCSS, Sass_
 
 ### License
 
