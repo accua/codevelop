@@ -20,6 +20,7 @@ nav {
     color: #00695c; }
   nav a {
     color: #00695c; }
+
   @media screen and (min-width: 992px) {
     nav form {
       width: 50%;
@@ -38,6 +39,8 @@ nav {
 
 .brand-logo {
   position: relative;
+  width: 56px;
+  height: 48px;
   left: 15px;
   padding: 0 15px; }
   .brand-logo .fa-copyright {
@@ -45,7 +48,7 @@ nav {
     left: 9px; }
   @media screen and (min-width: 767px) {
     .brand-logo {
-      top: -2px; } }
+      top: 2px; } }
 
 .dropdown-content li > a {
   color: #00695c; }
@@ -243,6 +246,14 @@ li {
   text-align: center;
   border-bottom: 2px solid #00796b;
   margin-bottom: 30px;
+}
+
+.create-team-header {
+  text-align: center;
+}
+
+#team_logo {
+  margin-left: 50px;
 }
 
 /*# sourceMappingURL=main.css.map */

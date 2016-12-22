@@ -1,29 +1,37 @@
-<% if @users.present? %>
-  <ul>
-    <% @users.each do |user| %>
-      <li><a href="/users/<%= user.id %>"><%= user.user_name %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-<p>There are no users containing the term(s) <%= params[:query] %>.</p>
-<% end %>
-<% if @teams.present? %>
-  <ul>
-    <% @teams.each do |team| %>
-      <li><a href="/teams/<%= team.id %>"><%= team.name %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-<p>There are no teams containing the term(s) <%= params[:query] %>.</p>
-<% end %>
-<% if @languages.present? %>
-  <% @languages.each do |language| %>
-  <ul>
-    <% language.users.each do %>
-    <li><a href="/users/<%= user.id %>"><%= language.user_name %></a></li>
-    <% end %>
-  </ul>
-  <% end %>
-<% else %>
-<p>There are no users with languages containing the term(s) <%= params[:query] %>.</p>
-<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col m4">
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+        <ul>
+          <li><img src="<%= user.profile_picture %>"><a href="/users/<%= user.id %>"><%= user.user_name %></a></li>
+        </ul>
+      <% else %>
+      <p>There are no users containing the term(s) <%= params[:query] %>.</p>
+      <% end %>
+    </div>
+    <div class="col m4">
+      <% if @teams.present? %>
+        <% @teams.each do |team| %>
+        <ul>
+          <li><img src="<%= team.logo %>"><a href="/teams/<%= team.id %>"><%= team.name %></a></li>
+        </ul>
+      <% else %>
+      <p>There are no teams containing the term(s) <%= params[:query] %>.</p>
+      <% end %>
+    </div>
+    <div class="col m4">
+      <% if @languages.present? %>
+        <% @languages.each do |language| %>
+        <ul>
+          <% language.users.each do |user| %>
+          <li><img src="<%= user.profile_picture %>"><a href="/users/<%= user.id %>"><%= user.user_name %></a></li>
+          <% end %>
+        </ul>
+      <% else %>
+      <p>There are no users with languages containing the term(s) <%= params[:query] %>.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
