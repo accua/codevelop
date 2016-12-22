@@ -1,6 +1,6 @@
 <div class="container content">
   <div class="row">
-    <div class="col m4 l3">
+    <div class="git-commits col m4 l3">
       <div class="card">
         <h5>Left sidebar</h5>
         <p>Occupy kitsch plaid cornhole tattooed sartorial four dollar toast pour-over. Irony tilde retro, messenger bag hammock gluten-free seitan +1 intelligentsia literally. Chicharrones ramps forage, vegan tousled wayfarers franzen. Biodiesel heirloom migas umami cold-pressed</p>
@@ -15,14 +15,12 @@
         <p>Occupy kitsch plaid cornhole tattooed sartorial four dollar toast pour-over. Irony tilde retro, messenger bag hammock gluten-free seitan +1 intelligentsia literally. Chicharrones ramps forage, vegan tousled wayfarers franzen.</p>
       </div>
     </div>
-    <div class="col l2 hide-on-med-and-down">
+    <div class="online-users col l2 hide-on-med-and-down">
       <div class="card">
-        <h5>Right sidebar</h5>
-        <p>Occupy kitsch plaid cornhole tattooed sartorial four dollar toast.</p>
-      </div>
-      <div class="card">
-        <h5>Right sidebar</h5>
-        <p>Occupy kitsch plaid cornhole tattooed sartorial four dollar toast.</p>
+        <h6>Online users</h6>
+        <% @online_users.each do |user| %>
+          <a href="<% %>"><i class="fa fa-user"></i><p><%= user.user_name %></p></a>
+        <% end %>
       </div>
     </div>
   </div>

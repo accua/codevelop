@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def log_on
+    self.online = true
+    self.save
+  end
+
+  def log_out
+    self.online = false
+    self.save
+  end
+
   def self.search(search)
     binding.pry
     where("user_name like ?", "%#{search}%")

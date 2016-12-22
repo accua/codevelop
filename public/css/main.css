@@ -196,3 +196,21 @@ input[type='search'] {
 .sign-in a{
   border-left: solid 1px #00695c;
 }
+
+.online-users .card{
+  height: 255px;
+}
+
+.online-users .card h6 {
+  text-align: center;
+}
+
+.online-users .fa-user {
+  float: left;
+  position: relative;
+  top: 3px;
+}
+
+.online-users .card p {
+  margin: 0 0 0 15px;
+}

@@ -16,6 +16,10 @@ end
 
 use Rack::Session::Pool, :cookie_only => false
 
+def logged_in?
+  session[:id]
+end
+
 def authenticated?
   session[:access_token]
 end
@@ -57,11 +61,11 @@ post '/sign_up' do
     session[:error] = "That email is already taken"
     redirect '/sign_up'
   else
-    @user = User.new({user_name: user, email: email, profile_picture: profile_picture})
+    @user = User.new({user_name: user, email: email, profile_picture: profile_picture, online: true})
     @user.password = params[:password1]
     if @user.save!
     session[:id] = @user.id
-    redirect to '/users/home'
+    redirect '/home'
     else
       session[:error] = "There was a problem saving your profile"
       redirect '/sign_up'
@@ -71,6 +75,10 @@ end
 
 get '/home' do
   @user = User.find(session[:id])
+  @online_users = []
+  User.all.each do |user|
+    user.online ? @online_users.push(user) : false
+  end
   erb :home
 end
 
@@ -78,12 +86,15 @@ get '/sign_in' do
   erb :sign_in, :locals => {:errors => session[:error]}
 end
 
-post '/sign_in' do
+patch '/sign_in' do
   login
+  user = User.find(session[:id])
+  user.update({online: true})
   redirect '/home'
 end
 
 get '/logout' do
+  User.update(session[:id], {online: false})
   session.clear
   redirect '/sign_in'
 end
