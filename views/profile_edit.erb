@@ -33,7 +33,7 @@
               </div>
               <span class="card-title">Bio</span>
                 <div class="row">
-                  <div class="col s12 m6 l12">  
+                  <div class="col s12 m6 l12">
                     <div class="input-field">
                       <textarea placeholder="<%= @user.bio %>" id="bio" name="bio" class="materialize-textarea" length="250" value="<% if !@user.nil? %><%= @user.bio %><% end %>"></textarea>
                     </div>
@@ -45,9 +45,9 @@
                 <img src="<%= @user.profile_picture %>" height="250">
                 <span class="card-title">Profile Picture</span>
                 <div class="input-field">
-                  <input type="text" name="profile_picture">
+                  <input type="text" name="profile_picture" value="<%= @user.profile_picture %>">
                   <label for="logo_url">Enter Logo URL</label>
-                  <a id="submit_logo" class="btn waves-effect waves-light" name="submit_logo">Upload Image</a>
+                  <a class="submit_logo" class="btn waves-effect waves-light" name="submit_logo">Upload Image</a>
                 </div>
               </div>
             </div>
