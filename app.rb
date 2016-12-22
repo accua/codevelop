@@ -86,15 +86,11 @@ def create_languages
   Language.create({name: "C++", icon: "<i class='devicon-cplusplus-plain colored'></i>"})
 end
 
-<<<<<<< HEAD
 def destroy(arr)
   arr.each do |a|
     a.destroy
   end
 end
-=======
-create_languages
->>>>>>> fbb5d4cf3ff51459288c0b3abaf17ffeaa97ce07
 
 get '/' do
 destroy(Language.all)
