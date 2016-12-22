@@ -23,7 +23,7 @@
       </div>
       <div class="card section2">
         <div class="card-header">
-        <h5>Your Teams</h5>
+          <h5>Your Teams</h5>
         </div>
         <% @user.teams.each() do |team| %>
           <div class="row">
@@ -34,7 +34,7 @@
                   <p class="list-group-item-text team-icons"></p>
                   <ul class="avatars">
                     <% team.users.each() do |user| %>
-                    <li><img class="circle" src="<%= user.profile_picture %>" alt="icon"></li>
+                      <li><img class="circle" src="<%= user.profile_picture %>" alt="icon"></li>
                     <% end %>
                   </ul>
                 </div>
@@ -44,8 +44,6 @@
         <% end %>
       </div>
       <div class="card">
-
-
         <div class="row">
           <div class="col s12">
             <ul class="tabs tabs-fixed-width">
@@ -55,14 +53,14 @@
           </div>
           <div id="follower_tab" class="col s12">
             <% if @user.followers.any? %>
-            <ul class="followers">
-              <% @user.followers.each() do |f| follower = User.find(f.follower_id)%>
-                <li><a href="/user/<%= follower.id %>"><img src="<%= follower.profile_picture %>"<class="figure-img img-fluid rounded circle"  alt="icon"><figcaption class="figure-caption"><%= follower.user_name %></figcaption></a></li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="follow">No followers</p>
-          <% end %></div>
+              <ul class="followers">
+                <% @user.followers.each() do |f| follower = User.find(f.follower_id)%>
+                  <li><a href="/user/<%= follower.id %>"><img src="<%= follower.profile_picture %>"<class="figure-img img-fluid rounded circle"  alt="icon"><figcaption class="figure-caption"><%= follower.user_name %></figcaption></a></li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class="follow">No followers</p>
+            <% end %></div>
           <div id="following_tab" class="col s12">
             <% if @user.followings.any? %>
               <ul class="followers">
@@ -75,19 +73,11 @@
             <% end %>
           </div>
         </div>
-
-
-
-
-
-
-
       </div>
     </div>
-
     <div class="col s12 m8 l8">
       <div class="card bio">
-      <h5>About Me</h5>
+        <h5>About Me</h5>
         <p><%= @user.bio %></p>
         <h6 class="ocupation">Work: <span><%= @user.job_history %></span></h6>
         <h6 class="dev-level">Developer Level: <span><%= @user.experience_level %></span></h6>
@@ -95,26 +85,26 @@
         <% if @user.languages.any? %>
           <ul>
             <% @user.languages.each() do |language| %>
-              <li><%= language.icon %></li>
+            <li><%= language.icon %></li>
             <% end %>
           </ul>
         <% else %>
           <p>You newb! Maybe you should brush up on a couple languages..</p>
         <% end %>
+      </div>
+      <div class="card">
+        <h5>Github Repos</h5>
+        <div class="row">
+          <% if !authenticated? %>
+            <p>It looks like we don't have access to your github. Would you like to display your repositories?</p>
+            <div class="sign-up-buttons">
+              <a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>"><i class="fa fa-github fa-3x"></i></a>
+            </div>
+          <% end %>
         </div>
-        <div class="card">
-          <h5>Github Repos</h5>
-          <div class="row">
-            <% if !authenticated? %>
-              <p>It looks like we don't have access to your github. Would you like to display your repositories?</p>
-              <div class="sign-up-buttons">
-                <a href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= client_id %>"><i class="fa fa-github fa-3x"></i></a>
-              </div>
-            <% end %>
-          </div>
-        </div>
+      </div>
         <% @user.posts.each do |post| %>
-        <% post_user = User.find(post.user_id.to_i) %>
+          <% post_user = User.find(post.user_id.to_i) %>
           <div class="card post">
             <span class="card-title"><img class="post_img" src="<%= post_user.profile_picture%>"><h4><%= post_user.user_name %></h4></span>
             <div class="card-content">
@@ -123,11 +113,12 @@
           </div>
         <% end %>
       </div>
+    </div>
   </div>
 
-    <script type="text/javascript">
-      $(function(){
-        $(".dropdown-button").dropdown();
-        $(".button-collapse").sideNav();
-      })
-    </script>
+<script type="text/javascript">
+  $(function(){
+    $(".dropdown-button").dropdown();
+    $(".button-collapse").sideNav();
+  })
+</script>

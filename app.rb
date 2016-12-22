@@ -281,6 +281,22 @@ get '/user/:id/follow' do
   @following.followers.create({follower_id: @user.id.to_i})
   redirect '/user/'.concat(@following.id.to_s)
 end
+
+get '/user/:id/unfollow' do
+  @user = User.find(session[:id].to_i)
+  @following = User.find(params[:id].to_i)
+  @user.followings.each do |follow|
+    if @following.id == follow.following_id
+      @user.followings.destroy(follow.id)
+    end
+  end
+  @following.followers.each do |follow|
+    if @user.id == follow.follower_id
+      @following.followers.destroy(follow.id)
+    end
+  end
+  redirect '/user/'.concat(@following.id.to_s)
+end
 # get '/teams/:id' do
 #
 # end
