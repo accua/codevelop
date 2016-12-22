@@ -517,7 +517,6 @@ li {
     color: #00695C;
 }
 
-
 .post .card-title h4{
   position: relative;
   top: -10px;
@@ -540,6 +539,22 @@ li {
   width: 180px;
   margin: 5px;
 }
+
+.btn, .btn-large, .btn-flat {
+  margin: 10px;
+}
+
+#top-team-button-margin {
+  margin-top: 10px;
+}
+
+#join-button-padding {
+  padding-left: 37px;
+  padding-right: 37px;
+}
+
+.inline {
+  display: inline;
 
 .online-users {
   min-height: 40vh;
