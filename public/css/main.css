@@ -17,9 +17,9 @@ nav {
   background-color: #fff;
   border-color: #efdfff; }
   nav .brand-logo, nav ul a {
-    color: #00796b; }
+    color: #00695c; }
   nav a {
-    color: #00796b; }
+    color: #00695c; }
   @media screen and (min-width: 992px) {
     nav form {
       width: 50%;
@@ -28,7 +28,7 @@ nav {
       left: 30%;
       transform: translate(-30%, 0); } }
   nav .input-field label i {
-    color: #00796b; }
+    color: #00695c; }
   nav .input-field input {
     border: 1px solid #ddd;
     height: 65%; }
@@ -50,7 +50,7 @@ nav {
       top: -2px; } }
 
 .dropdown-content li > a {
-  color: #00796b; }
+  color: #00695c; }
 
 input[type='search'] {
   border: 1px solid #ddd; }
@@ -102,7 +102,7 @@ input[type='search'] {
 
 
 .secondary-color {
-  background-color: #00796b !important;
+  background-color: #00695c !important;
 }
 
 .text-muted {
@@ -165,9 +165,34 @@ input[type='search'] {
 }
 
 #sign-up-form h3 {
-  color: #00796b;
+  color: #00695c;
 }
 
-.brand-logo {
+.sign-up-buttons {
+  text-align: center;
+}
 
+.sign-up-buttons i {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  color: #9E9E9E;
+  transition: color 0.5s ease;
+}
+
+.sign-up-buttons i:hover {
+  color: #00695c;
+}
+
+.sign-up {
+  background-color: #00695c;
+}
+
+.sign-up a{
+  color:#fff;
+  border-left: 1px solid #fff;
+}
+
+.sign-in a{
+  border-left: solid 1px #00695c;
 }

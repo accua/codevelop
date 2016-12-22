@@ -21,7 +21,7 @@ def authenticated?
 end
 
 def authenticate!
-  erb :github_sign_up, :locals => {:client_id => CLIENT_ID}
+  erb :sign_up, :locals => {:client_id => CLIENT_ID}
 end
 
 def login
@@ -43,14 +43,13 @@ get '/' do
 end
 
 get '/sign_up' do
-  @errors = session[:error]
-  session[:error] = nil
   erb :sign_up
 end
 
 post '/sign_up' do
   user = params[:user_name]
   email = params[:email]
+  profile_picture = params[:profile_picture]
   if User.exists?(user_name: user)
     session[:error] = "That username is already taken"
     redirect '/sign_up'
@@ -58,7 +57,7 @@ post '/sign_up' do
     session[:error] = "That email is already taken"
     redirect '/sign_up'
   else
-    @user = User.new({user_name: user, email: email})
+    @user = User.new({user_name: user, email: email, profile_picture: profile_picture})
     @user.password = params[:password1]
     if @user.save!
     session[:id] = @user.id
@@ -70,29 +69,23 @@ post '/sign_up' do
   end
 end
 
-get '/users/home' do
+get '/home' do
   @user = User.find(session[:id])
   erb :home
 end
 
 get '/sign_in' do
-  @errors = session[:error]
-  session[:error] = nil
-  erb :sign_in
+  erb :sign_in, :locals => {:errors => session[:error]}
 end
 
 post '/sign_in' do
   login
-  erb :home
+  redirect '/home'
 end
 
 get '/logout' do
   session.clear
-  redirect 'sign_in'
-end
-
-get '/github_sign_up' do
-  erb :github_sign_up
+  redirect '/sign_in'
 end
 
 get '/github' do
@@ -124,7 +117,10 @@ get '/github' do
 
 
     session[:user] = @auth_result['login']
-    erb :github_sign_up, :locals => {:client_id => CLIENT_ID}
+    @user_name = @auth_result['login']
+    @email = @auth_result['private_emails'][0]['email']
+    @profile_picture = @auth_result['avatar_url']
+    erb :sign_up
   end
 end
 

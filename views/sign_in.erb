@@ -18,9 +18,11 @@
       </div>
       <button class="btn waves-effect waves-light secondary-color" type="submit" name="submit">OK</button>
     </form><br>
-    <a href="/sign_up">New to Codevelop? Create an account!</a>
-    <% if !@errors.nil? %>
-      <p class="error"><%= @errors %></p>
+    <p>New to Codevelop? <a href="/sign_up">Create an account!</a></p>
+    <% if !errors.nil? %>
+    <div class="clearfix"></div>
+    <p class="error"><%= errors %></p>
+      <% session[:errors] = nil %>
     <% end %>
   </div>
 </div>
