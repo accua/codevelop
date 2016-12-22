@@ -77,7 +77,7 @@ get '/home' do
   @user = User.find(session[:id])
   @online_users = []
   User.all.each do |user|
-    user.online ? @online_users.push(user) : false
+    user.online and user.id != @user.id ? @online_users.push(user) : false
   end
   erb :home
 end

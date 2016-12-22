@@ -468,3 +468,23 @@ li {
 .online-users .card p {
   margin: 0 0 0 15px;
 }
+
+.card-image {
+  height: 225px;
+  width: auto;
+
+}
+
+.card-content {
+  margin-left: 10px;
+  max-height: 243px;
+  overflow: hidden;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+  color: #333;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+    color: #00695C;
+}
