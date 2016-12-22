@@ -61,15 +61,32 @@ get '/logout' do
   erb :sign_in
 end
 
-get '/search' do
-  @users = []
-  @teams = []
-  @language = []
-  if params[:query]
-    @users.push(User.search(params[:query]))
-    @teams.push(Team.search(params[:query]))
-    @language.push(Language.search(params[:query]))
-  else
-    erb :error
-  end
+get '/teams/new' do
+  erb :team_create
+end
+
+post '/teams/new' do
+  name = params[:team_name]
+  logo = params[:logo_url]
+  bio = params[:team_bio]
+  Team.create({name: name, team_info: bio, logo: logo})
+  redirect '/team/:id'
+end
+
+get '/teams' do
+  @teams = Team.all()
+  @user = User.find(session[:id])
+  erb :teams
+end
+
+get '/teams/:id' do
+
+end
+
+patch 'teams/:id' do
+
+end
+
+delete 'teams/:id' do
+
 end

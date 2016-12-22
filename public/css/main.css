@@ -17,9 +17,9 @@ nav {
   background-color: #fff;
   border-color: #efdfff; }
   nav .brand-logo, nav ul a {
-    color: #00796b; }
+    color: #00695C; }
   nav a {
-    color: #00796b; }
+    color: #00695C; }
   @media screen and (min-width: 992px) {
     nav form {
       width: 50%;
@@ -28,7 +28,7 @@ nav {
       left: 30%;
       transform: translate(-30%, 0); } }
   nav .input-field label i {
-    color: #00796b; }
+    color: #00695C; }
   nav .input-field input {
     border: 1px solid #ddd;
     height: 65%; }
@@ -40,6 +40,8 @@ nav {
 
 .brand-logo {
   position: relative;
+  width: 56px;
+  height: 48px;
   left: 15px;
   padding: 0 15px; }
   .brand-logo .fa-copyright {
@@ -47,10 +49,10 @@ nav {
     left: 9px; }
   @media screen and (min-width: 767px) {
     .brand-logo {
-      top: -2px; } }
+      top: 2px; } }
 
 .dropdown-content li > a {
-  color: #00796b; }
+  color: #00695C; }
 
 input[type='search'] {
   border: 1px solid #ddd; }
@@ -157,6 +159,14 @@ input[type='search'] {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+.create-team-header {
+  text-align: center;
+}
+
+#team_logo {
+  margin-left: 50px;
 }
 
 /*# sourceMappingURL=main.css.map */
