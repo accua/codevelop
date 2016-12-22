@@ -34,10 +34,8 @@ nav {
     border: 1px solid #ddd;
     height: 65%; }
 
-.input-field:first-of-type {
-  margin-top: 0; }
-
 .brand-logo {
+  margin-top: 2px;
   position: relative;
   width: 56px;
   height: 48px;
@@ -212,6 +210,11 @@ legend {
   font-weight: bold;
   width: 70%;
 }
+
+.splash-form .col {
+  margin-top: 20px;
+}
+
 
 #new-user {
   margin-top: 20px;

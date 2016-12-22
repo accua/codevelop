@@ -1,0 +1,105 @@
+<div class="row signup-section">
+  <div class="intro-header col m4 offset-m1">
+    <h2>Welcome to Codevelop</h2>
+    <p>We are a team of 4 developers with a user base of over 1! Migas chartreuse chicharrones, banh mi kickstarter chambray craft beer organic hella stumptown typewriter slow-carb freegan schlitz. Hexagon synth ennui, butcher hashtag echo park activated charcoal chartreuse pok pok polaroid prism tbh disrupt migas helvetica. Selfies try-hard iceland tbh. Keffiyeh lomo air plant, mustache stumptown small batch kinfolk retro unicorn.</p>
+  </div>
+  <div class="col l7 splash-sign-up">
+    <form id="new-user" action="/sign_up" method="post">
+        <div class="splash-form right">
+            <div class="col s12">
+              <div class="splash-form input-field">
+                <input id="user_name" type="text" class="validate">
+                <label class="active" for="user_name">Username</label>
+              </div>
+            </div>
+            <div class="col s12">
+              <div class="splash-form input-field">
+                <input id="email" type="email" class="validate <% if @email_error %> invalid<% end %>">
+                <label data-error="That email is already taken" class="active" for="email">Email</label>
+              </div>
+            </div>
+            <div class="col s12">
+              <div class="splash-form input-field">
+                <input id="password1" name="password1" type="password" class="validate">
+                <label class="active" for="password">Password</label>
+              </div>
+            </div>
+            <div class="splash-form signup-button col s12">
+              <button class="btn btn-raised" type="submit" name="action">Sign up to Codevelop
+              </button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<div class="row">
+  <div class="col s12 l12">
+    <h3 class="why-header">Why Codevelop?</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="container content">
+    <div class="col s12 m12 l12">
+      <div class="col s12 m3 l4">
+        <div class="info-card card">
+          <span class="card-title">Meet local developers</span>
+           <div class="content">
+             <i class="fa fa-handshake-o fa-5x" style="color:#00695c" aria-hidden="true"></i>
+             <p>I am a very simple card. I am good at containing small bits of information.
+             I am convenient because I require little markup to use effectively.</p>
+           </div>
+         </div>
+        </div>
+      <div class="col s12 m3 l4">
+        <div class="info-card card">
+          <span class="card-title">Collaborate</span>
+           <div class="content">
+             <i class="fa fa-users fa-5x" style="color:#00695c" aria-hidden="true"></i>
+             <p>I am a very simple card. I am good at containing small bits of information.
+             I am convenient because I require little markup to use effectively.</p>
+           </div>
+         </div>
+      </div>
+      <div class="col s12 m3 l4">
+        <div class="info-card card">
+          <span class="card-title">Communicate</span>
+           <div class="content">
+             <i class="fa fa-comments fa-5x" style="color:#00695c" aria-hidden="true"></i>
+             <p>I am a very simple card. I am good at containing small bits of information.
+             I am convenient because I require little markup to use effectivelyxcvvxcvxcv.</p>
+           </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container content">
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <h4>Our Members</h4>
+    </div>
+  </div>
+</div>
+<div class="bottom-content container content">
+  <div class="row">
+    <div class="col s4 m6 l4">
+      <h5>Freelancers</h5>
+      <p>Hexagon synth ennui, butcher hashtag echo park activated charcoal chartreuse pok pok polaroid prism tbh disrupt migas helvetica. Selfies try-hard iceland tbh. Keffiyeh lomo air plant, mustache stumptown small batch kinfolk retro unicorn.</p>
+    </div>
+    <div class="col s4 m6 l4">
+        <h5>Professionals</h5>
+        <p>Hexagon synth ennui, butcher hashtag echo park activated charcoal chartreuse pok pok polaroid prism tbh disrupt migas helvetica. Selfies try-hard iceland tbh. Keffiyeh lomo air plant, mustache stumptown small batch kinfolk retro unicorn.</p>
+    </div>
+    <div class="col s4 m4 l4">
+        <h5>Aspiring New Programmers</h5>
+        <p>Hexagon synth ennui, butcher hashtag echo park activated charcoal chartreuse pok pok polaroid prism tbh disrupt migas helvetica. Selfies try-hard iceland tbh. Keffiyeh lomo air plant, mustache stumptown small batch kinfolk retro unicorn.</p>
+    </div>
+  </div>
+</div>
+<div id="bottom-button" class= "container content">
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <button class="btn btn-large" type="submit" name="create">Sign up now!</a>
+    </div>
+  </div>
+</div>
