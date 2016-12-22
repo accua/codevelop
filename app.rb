@@ -240,6 +240,13 @@ post '/teams/:id' do
   redirect '/team/:id'
 end
 
+get '/teams/:id/join' do
+  team = Team.find(params[:id].to_i)
+  user = User.find(session[:id])
+  user.teams.push(team)
+  redirect 'teams/:id'
+end
+
 get '/search' do
   if params[:query]
     search = params[:query] + "%"
@@ -257,7 +264,7 @@ get '/teams' do
 end
 
 get '/teams/:id' do
-  @team = Team.find(3)
+  @team = Team.find(params[:id].to_i)
   erb :team
 end
 
