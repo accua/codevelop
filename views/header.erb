@@ -16,7 +16,7 @@
       <li><a class="dropdown-button" href="#!" data-beloworigin="true" data-activates="dropdown1"><%= User.find(session[:id]).user_name %><i class="material-icons right">arrow_drop_down</i></a></li>
       <ul id="dropdown1" class="dropdown-content">
         <li><a href="/teams">Teams</a></li>
-        <li><a href="/user/<% session[:id] %>">user</a></li>
+        <li><a href="/users/<%= session[:id] %>">User</a></li>
         <li class="divider"></li>
         <li><a href="/logout">Log out</a></li>
       </ul>

@@ -4,6 +4,7 @@ require 'sinatra'
 require 'rest-client'
 require 'json'
 require 'bcrypt'
+require 'pry'
 Dotenv.load
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -222,10 +223,12 @@ get '/teams' do
   erb :teams
 end
 
-# get '/teams/:id' do
-#
-# end
-#
+
+get '/teams/:id' do
+  @team = Team.find(3)
+  erb :team
+end
+
 # patch 'teams/:id' do
 #
 # end
@@ -233,3 +236,8 @@ end
 # delete 'teams/:id' do
 #
 # end
+
+get '/users/:id' do
+  @user = User.find(session[:id])
+  erb :profile
+end
