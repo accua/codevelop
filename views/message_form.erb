@@ -2,13 +2,13 @@
   <div class="row">
     <div class="input-field col s10 offset-s1">
       <i class="material-icons prefix">textsms</i>
-      <input type="text" name="receiver_id" id="autocomplete-input" class="autocomplete" autocomplete="off" <% if !user_id.nil? %> value="<%= User.find(user_id).user_name %>" required><% end %>
+      <input type="text" name="receiver_id" id="autocomplete-input" class="autocomplete" autocomplete="off" <% if !user_id.nil? %> value="<%= User.find(user_id).user_name %>"<% end %> required>
       <label for="autocomplete-input">Recipient</label>
     </div>
     <div class="input-field col s10 offset-s1">
       <i class="material-icons prefix">mode_edit</i>
       <textarea id="new_message_text" name="content" class="materialize-textarea" required></textarea>
-      <label for="textarea1">Message</label>
+      <label for="new_message_text">Message</label>
     </div>
     <div class="col s3 offset-s1">
       <button class="waves-effect waves-light btn" type="submit" name="button"><i class="fa fa-paper-plane fa-lg"></i>  Send</button>

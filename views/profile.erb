@@ -35,7 +35,7 @@
                   <p class="list-group-item-text team-icons"></p>
                   <ul class="avatars">
                     <% team.users.each() do |user| %>
-                      <li><img class="circle" src="<%= user.profile_picture %>" alt="icon"></li>
+                      <li><img class="circle" src="<%= user.profile_picture %>"></li>
                     <% end %>
                   </ul>
                 </div>
@@ -56,7 +56,7 @@
             <% if @user.followers.any? %>
               <ul class="followers">
                 <% @user.followers.each() do |f| follower = User.find(f.follower_id)%>
-                  <li><a href="/users/<%= follower.id %>"><img src="<%= follower.profile_picture %>"<class="figure-img img-fluid rounded circle"  alt="icon"><figcaption class="figure-caption"><%= follower.user_name %></figcaption></a></li>
+                  <li><a href="/users/<%= follower.id %>"><img src="<%= follower.profile_picture %>"<class="figure-img img-fluid rounded circle"  ><figcaption class="figure-caption"><%= follower.user_name %></figcaption></a></li>
                 <% end %>
               </ul>
             <% else %>

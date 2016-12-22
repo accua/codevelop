@@ -86,8 +86,15 @@ def create_languages
   Language.create({name: "C++", icon: "<i class='devicon-cplusplus-plain colored'></i>"})
 end
 
+def destroy(arr)
+  arr.each do |a|
+    a.destroy
+  end
+end
+
 get '/' do
-  create_languages
+destroy(Language.all)
+create_languages
   if logged_in?
     redirect '/home'
   end
@@ -150,7 +157,7 @@ end
 get '/logout' do
   User.update(session[:id], {online: false})
   session.clear
-  redirect '/sign_in'
+  erb :sign_out
 end
 
 get '/github' do
@@ -224,7 +231,7 @@ end
 
 get '/message/new' do
   @users = User.all
-  erb :message_form
+  erb :message_form, :locals => {:user_id => params[:id]}
 end
 
 get '/message/:id/new' do
@@ -311,14 +318,9 @@ delete '/home/posts/:id' do
   redirect '/home'
 end
 
-# patch '/posts/:id' do
-#
-# end
-
 get '/users/:id' do
   @user = User.find(params[:id].to_i)
   erb :profile, :locals => {:client_id => CLIENT_ID}
-  # redirect '/home'
 end
 
 get '/users/:id/follow' do
@@ -379,28 +381,17 @@ patch '/users/:id' do
   picture = params.fetch("profile_picture")
   languages = params[:languages]
   @user = User.find(session[:id])
-  # @user.languages.each do |language|
-  #   language.destroy
-  # end
-  languages.each do |language|
-    new_language = Language.find(language.to_i)
-    binding.pry
-    @user.languages.push(new_language)
+  @user.languages = []
+  if !languages.nil?
+    languages.each do |language|
+      new_language = Language.find(language.to_i)
+      @user.languages.push(new_language)
+    end
   end
-  erb :profile
+  @user.update({user_name: user_name, email: email, job_history: work, bio: bio, profile_picture: picture})
+  redirect '/users/'.concat(current_user.id.to_s)
 end
 
-# get '/teams/:id' do
-#
-# end
-#
-# patch 'teams/:id' do
-#
-# end
-#
-# delete 'teams/:id' do
-#
-# end
 get '/clear' do
   session.clear
   redirect '/'
@@ -415,5 +406,4 @@ get '/repos' do
   all_repos.each do |repo|
     names.push(repo['name'])
   end
-binding.pry
 end

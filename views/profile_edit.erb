@@ -23,22 +23,7 @@
                   </div>
                 </div>
               </div>
-              <span class="card-title">Location</span>
-              <div class="row">
-                <div class="col s12 m6 l6">
-                  <div class="input-field">
-                    <input id="location" name="location" type="text" class="validate">
-                    <label for="location">City</label>
-                  </div>
-                </div>
-                <div class="col s12 m6 l6">
-                  <div class="input-field">
-                    <input id="name" type="text" class="validate">
-                    <label class="active" for="name">State</label>
-                  </div>
-                </div>
-              </div>
-              <span class="card-title">Work</span>
+              <span class="card-title">Job title</span>
               <div class="row">
                 <div class="col s12 m6 l6">
                   <div class="input-field">
@@ -48,10 +33,9 @@
               </div>
               <span class="card-title">Bio</span>
                 <div class="row">
-                  <div class="col s12 m6 l12">
+                  <div class="col s12 m6 l12">  
                     <div class="input-field">
                       <textarea placeholder="<%= @user.bio %>" id="bio" name="bio" class="materialize-textarea" length="250" value="<% if !@user.nil? %><%= @user.bio %><% end %>"></textarea>
-                      <label for="bio">Bio</label>
                     </div>
                   </div>
                 </div>
