@@ -26,19 +26,44 @@
         </form>
       </div>
       <% @posts.each do |post| %>
-      <% post_user = User.find(post.user_id.to_i) %>
-        <div class="card post">
-          <a href="/users/<%= post_user.id %>"class="card-title"><img class="post_img" src="<%= post_user.profile_picture%>"><h4><%= post_user.user_name %></h4></a>
-          <div class="card-content">
-            <p><%= post.content %></p>
+        <% post_user = User.find(post.user_id.to_i) %>
+          <div class="card post">
+            <a href="/users/<%= post_user.id %>"class="card-title"><img class="post_img" src="<%= post_user.profile_picture%>"><h4><%= post_user.user_name %></h4></a>
+            <div class="card-content">
+              <p><%= post.content %></p>
           </div>
+          <% post.comments.each do |comment| %>
+            <p class="comment"><%= comment.content %></p>
+          <% end %>
           <button class="btn" type="submit" name="button">Edit</button>
           <form class="inline" action="home/posts/<%= post.id %>" method="post">
             <input name="_method" type="hidden" value="delete">
             <button class="btn" type="submit" name="button">Delete</button>
           </form>
-
         </div>
+          <ul class="collapsible" data-collapsible="accordion" id="create-message">
+            <li>
+              <div class="collapsible-header"><i class="material-icons prefix">input</i>Comment</div>
+              <div class="collapsible-body">
+                <form action="/comment" method="post">
+                  <input id='post_id' name='post_id' type='hidden' value='<%= post.id %>'>
+                  <input id='current_user' name='current_user' type='hidden' value='<%= current_user.id %>'>
+
+
+                  <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                      <i class="material-icons prefix">mode_edit</i>
+                      <textarea id="textarea1" name="content" class="materialize-textarea" required></textarea>
+                      <label for="textarea1">Speak your mind</label>
+                    </div>
+                    <div class="col s3 offset-s1">
+                      <button class="waves-effect waves-light btn" type="submit" name="button"><i class="fa fa-paper-plane fa-lg"></i>  Post</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+          </ul>
       <% end %>
     </div>
     <div class="col l2 hide-on-med-and-down">
