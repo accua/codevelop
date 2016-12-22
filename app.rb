@@ -203,12 +203,13 @@ get '/callback' do
 end
 
 get '/conversation/:id' do
-  @user = User.find(params[:id])
+  @user = current_user
+  @messager = User.find(params[:id])
   erb :conversation, :layout => (request.xhr? ? false : :layout)
 end
 
 get '/messages' do
-  user = User.find(session[:id])
+  user = current_user
   @users = []
   user.messages.each do |message|
     if message.sender_id != user.id && !@users.include?(User.find(message.sender_id.to_i))
@@ -217,7 +218,7 @@ get '/messages' do
         @users.push(User.find(message.receiver_id.to_i))
     end
   end
-  session[:recent]? @recent = session[:recent] : false
+  session[:recent]? @messager = session[:recent] : false
   erb :messages
 end
 
@@ -231,7 +232,7 @@ get '/message/:id/new' do
 end
 
 post '/message' do
-  @user = User.find(session[:id])
+  @user = current_user
   receiver = User.find_by(email: params[:receiver_id])
   if receiver.nil?
     receiver = User.find_by(user_name: params[:receiver_id])
@@ -246,7 +247,8 @@ post '/message' do
 end
 
 get '/recent_message' do
-  @user = User.find(session[:recent])
+  @user = current_user
+  @messager = User.find(session[:recent])
   erb :recent_conversation, :layout => (request.xhr? ? false : :layout)
 end
 
