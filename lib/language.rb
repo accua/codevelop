@@ -5,3 +5,4 @@ class Language < ActiveRecord::Base
   def self.search(search)
     where("name like ?", "%#{query}%")
   end
+end

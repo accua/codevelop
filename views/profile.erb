@@ -86,7 +86,7 @@
         <% if @user.languages.any? %>
           <ul>
             <% @user.languages.each() do |language| %>
-            <li><%= language.icon %></li>
+            <li class="icons prog-icon"><%= language.icon %></li>
             <% end %>
           </ul>
         <% else %>

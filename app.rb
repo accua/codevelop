@@ -71,7 +71,7 @@ def login
   end
 end
 
-def get_icon
+def create_languages
   Language.create({name: "Ruby", icon: "<i class='devicon-ruby-plain colored'></i>"})
   Language.create({name: "Javascript", icon: "<i class='devicon-javascript-plain colored'></i>"})
   Language.create({name: "C#", icon: "<i class='devicon-csharp-plain colored'></i>"})
@@ -87,6 +87,7 @@ def get_icon
 end
 
 get '/' do
+  create_languages
   if logged_in?
     redirect '/home'
   end
@@ -363,7 +364,7 @@ patch '/teams/:id/edit' do
 end
 
 get '/users/:id/edit' do
-  Language.get_icon
+  @user = User.find(session[:id])
   @languages = Language.all
   erb :profile_edit
 end
@@ -374,12 +375,15 @@ patch '/users/:id' do
   work = params.fetch("work")
   bio = params.fetch("bio")
   picture = params.fetch("profile_picture")
+  languages = params[:languages]
   @user = User.find(session[:id])
-  @user.languages.each do |language|
-    language.destroy
-  end
-  params[:languages].each do |language|
-    @user.language.push(Language.find(language))
+  # @user.languages.each do |language|
+  #   language.destroy
+  # end
+  languages.each do |language|
+    new_language = Language.find(language.to_i)
+    binding.pry
+    @user.languages.push(new_language)
   end
   erb :profile
 end
