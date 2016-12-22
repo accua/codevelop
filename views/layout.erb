@@ -9,18 +9,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
     <script src="/js/bin/materialize.min.js"></script>
-    <script src="/js/scripts.js">
-
-    </script>
-    <title>Sign Up - Codevelop</title>
+    <script src="/js/scripts.js"></script>
+    <title>Codevelop</title>
   </head>
-
-<!-- is container working properly? -->
 
   <body>
     <header>
-      <% if authenticated? %>
+      <% if logged_in? %>
         <%= erb :header %>
       <% else %>
         <%= erb :sign_up_header %>

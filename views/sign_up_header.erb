@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="/home" class="brand-logo"><i class="fa fa-connectdevelop fa-2x"></i><i class="fa fa-copyright fa-2x"></i></a>
+    <a href="/home" class="brand-logo"><img class="brand-logo" src="img/logo.png" alt=""></a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <form class="hide-on-med-and-down" action="/search">
         <div class="input-field">
@@ -10,14 +10,12 @@
         </div>
       </form>
     <ul class="right hide-on-med-and-down">
-      <li class="sign-in"><a href="/home">Sign-in<i class="material-icons right">input</i></a></li>
-      <li class="sign-up"><a href="/messages">Sign-up<i class="fa fa-user-plus fa-lg right"></i></a></li>
+      <li class="sign-in"><a href="/sign_in">Sign-in<i class="material-icons right">input</i></a></li>
+      <li class="sign-up"><a href="/sign_up">Sign-up<i class="fa fa-user-plus fa-lg right"></i></a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
-      <li><a href="/messages">Messages</a></li>
-      <li><a href="/teams">Teams</a></li>
-      <li><a href="/user/<% session[:id] %>">Profile</a></li>
-      <li><a href="/logout">Log out</a></li>
+      <li><a href="/sign_in">Sign-in<i class="material-icons right">input</i></a></li>
+      <li><a href="/sign_up">Sign-up<i class="fa fa-user-plus fa-lg right"></i></a></li>
     </ul>
   </div>
 </nav>

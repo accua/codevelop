@@ -34,10 +34,8 @@ nav {
     border: 1px solid #ddd;
     height: 65%; }
 
-.input-field:first-of-type {
-  margin-top: 0; }
-
 .brand-logo {
+  margin-top: 2px;
   position: relative;
   width: 56px;
   height: 48px;
@@ -109,6 +107,165 @@ input[type='search'] {
 .text-muted {
   color: #9E9E9E;
 }
+
+/* styling for  splash page */
+/*navbar styling--------------------------------*/
+#nav-img {
+  height: 60px;
+  width: 60px;
+}
+
+#logo-img {
+  height: 25px;
+  width: 25px;
+}
+
+/*profile Creat/edt styling--------------------------------*/
+.prog-icon  {
+font-size: 3rem;
+}
+
+
+/*profile styling--------------------------------*/
+.profile-head {
+  text-align: center;
+}
+
+.icons {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+}
+
+.caption h5 {
+    text-align:center;
+    font-size: 15px;
+}
+.caption img {
+    text-align:center;
+}
+
+legend {
+  margin: 3px;
+  text-align: center;
+  width:100%
+}
+
+#all-followers {
+  float: right;
+  margin-right: -95px;
+}
+
+.followers img, figcaption {
+  margin-right: 20px;
+}
+
+#follow {
+  color: white;
+  background-color: #9E7CC1;
+  font-weight: bold;
+}
+
+#github {
+  width: 700px;
+  height: 450px;
+}
+
+.avatars li, .avatars .circle .plus{
+  display: inline-block;
+}
+.avatars .circle, .plus {
+  width: 50px;
+  height: 50px;
+}
+
+.followers li, .followers .circle .plus{
+  display: inline-block;
+}
+.followers .circle, .plus {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+/*splash page styling--------------------------------*/
+
+.signup-section {
+  background: linear-gradient(#f1edf4, transparent 90%),
+            linear-gradient(0deg, #fff, transparent),
+            #f1edf4 url('../img/splash-background.jpg') no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f1edf4;
+}
+
+.why-header {
+  text-align: center;
+}
+
+.splash-form {
+  font-weight: bold;
+  width: 70%;
+}
+
+.splash-form .col {
+  margin-top: 20px;
+}
+
+
+#new-user {
+  margin-top: 20px;
+}
+
+.bottom-content {
+  border-bottom: 2px solid #D7CCC8;
+}
+
+.bottom-content p {
+  padding-right: 10px;
+}
+
+.intro-header p, .intro-header h2{
+  margin-left: 40px;
+  padding-bottom: 40px;
+}
+
+
+#bottom-button {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+footer.page-footer  {
+  background-color: #4b484f;
+}
+
+
+.info-card  {
+  text-align: center;
+  color: #333;
+}
+
+.row .splash-form label {
+  font-weight: bolder;
+  color: black;
+  font-size: 16px;
+}
+
+.header-content {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.btn.btn-raised, .btn.btn-large, .btn, btn.span {
+  background-color: #00695c;
+  color: white;
+}
+
+/*splash page styling End--------------------------------*/
 
 @media only screen and (min-width: 993px) {
   #team_pic {
@@ -292,4 +449,42 @@ li {
 
 .sign-in a{
   border-left: solid 1px #00695c;
+}
+
+.online-users .card{
+  height: 255px;
+}
+
+.online-users .card h6 {
+  text-align: center;
+}
+
+.online-users .fa-user {
+  float: left;
+  position: relative;
+  top: 3px;
+}
+
+.online-users .card p {
+  margin: 0 0 0 15px;
+}
+
+.card-image {
+  height: 225px;
+  width: auto;
+
+}
+
+.card-content {
+  margin-left: 10px;
+  max-height: 243px;
+  overflow: hidden;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+  color: #333;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+    color: #00695C;
 }
