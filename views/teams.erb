@@ -5,6 +5,9 @@
       <% @teams.each do |team| %>
       <ul>
         <li><img src="<%= team.logo %>" alt="Team Logo"><a href="/teams/<%= team.id %>"><%= team.name %></a></li>
+        <ul>
+          <li><%= team.team_info %></li>
+        </ul>
       </ul>
     <% end %>
     </div>

@@ -65,7 +65,7 @@ get '/teams/new' do
   erb :team_create
 end
 
-post '/teams/new' do
+post '/teams/:id' do
   name = params[:team_name]
   logo = params[:logo_url]
   bio = params[:team_bio]
@@ -79,14 +79,14 @@ get '/teams' do
   erb :teams
 end
 
-get '/teams/:id' do
-
-end
-
-patch 'teams/:id' do
-
-end
-
-delete 'teams/:id' do
-
-end
+# get '/teams/:id' do
+#
+# end
+#
+# patch 'teams/:id' do
+#
+# end
+#
+# delete 'teams/:id' do
+#
+# end

@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="new_object" action="/teams/new" method="post">
+  <form class="new_object" action="/teams/:id" method="post">
     <div class="card">
       <div class="row">
         <div class="col s12 l12">
@@ -8,7 +8,7 @@
       </div>
       <div class="row">
         <div class="col s12 m4">
-          <img id="team_logo" src="img/profile.jpg" height="200">
+          <img id="team_logo" src="/img/logo.png" height="200">
           <div class="input-field">
             <input type="text" name="logo_url">
             <label for="logo_url">Enter Logo URL</label>
