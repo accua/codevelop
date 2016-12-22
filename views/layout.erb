@@ -19,8 +19,12 @@
 <!-- is container working properly? -->
 
   <body>
-    <header class="container">
-      <%= erb :header %>
+    <header>
+      <% if authenticated? %>
+        <%= erb :header %>
+      <% else %>
+        <%= erb :sign_up_header %>
+      <% end %>
     </header>
     <%= yield %>
   </body>
