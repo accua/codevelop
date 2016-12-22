@@ -266,6 +266,13 @@ post '/teams/:id' do
   redirect '/team/:id'
 end
 
+get '/teams/:id/join' do
+  team = Team.find(params[:id].to_i)
+  user = User.find(session[:id])
+  user.teams.push(team)
+  redirect 'teams/:id'
+end
+
 get '/search' do
   if params[:query]
     search = params[:query] + "%"
@@ -283,7 +290,7 @@ get '/teams' do
 end
 
 get '/teams/:id' do
-  @team = Team.find(3)
+  @team = Team.find(params[:id].to_i)
   erb :team
 end
 
@@ -294,6 +301,16 @@ post '/post_content' do
   @user.posts.push(new_post)
   redirect '/home'
 end
+
+delete '/home/posts/:id' do
+  post = Post.find(params[:id].to_i)
+  post.delete
+  redirect '/home'
+end
+
+# patch '/posts/:id' do
+#
+# end
 
 get '/users/:id' do
   @user = User.find(params[:id].to_i)
@@ -328,6 +345,21 @@ get '/users/:id/unfollow' do
     end
   end
   redirect '/users/'.concat(@following.id.to_s)
+end
+
+
+get '/teams/:id/edit' do
+  @team = Team.find(params[:id].to_i)
+  erb :team_edit
+end
+
+patch '/teams/:id/edit' do
+  @team = Team.find(params[:id].to_i)
+  name = params[:team_name]
+  logo = params[:logo_url]
+  bio = params[:team_bio]
+  Team.update({name: name, team_info: bio, logo: logo})
+  redirect '/teams/:id'
 end
 
 get '/users/:id/edit' do
