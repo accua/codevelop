@@ -9,8 +9,8 @@
           <h5><%= @user.user_name %> </h5>
           <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>Location: <span>Portland, Oregon</span></p>
           <div class="card-action user-buttons">
-            <a href="/follow" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
-            <a href="/message/new" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-envelope" aria-hidden="true"></i>Message</a>
+            <a href="/user/<%= @user.id %>/follow" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
+            <a href="/message/<%= @user.id %>/new" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-envelope" aria-hidden="true"></i>Message</a>
             <% if @user.id == session[:id] %>
               <a href="/user/:id/edit" class="btn btn-raised btn-sm btn-warning">Edit profile</a>
             <% end %>
