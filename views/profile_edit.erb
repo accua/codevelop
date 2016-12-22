@@ -41,24 +41,18 @@
                 </div>
             </div>
             <div class="right">
-              <div class="col s12 m6 l6">
+              <div class="col s12 m6 l8">
                 <img src="<%= @user.profile_picture %>" height="250">
                 <span class="card-title">Profile Picture</span>
-                <div class="file-field input-field">
-                  <div class="btn btn-raised">
-                    <span>Upload Photo</span>
-                    <div class="file-path-wrapper">
-                      <input type="file" name="profile_picture" onchange="previewFile()">
-                    </div>
-                  </div>
+                <div class="input-field">
+                  <input type="text" name="profile_picture">
+                  <label for="logo_url">Enter Logo URL</label>
+                  <a id="submit_logo" class="btn waves-effect waves-light" name="submit_logo">Upload Image</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-
         <div class="card">
             <div class="row">
               <div class="input-field col s12 m6 l4">

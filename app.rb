@@ -86,11 +86,15 @@ def create_languages
   Language.create({name: "C++", icon: "<i class='devicon-cplusplus-plain colored'></i>"})
 end
 
+<<<<<<< HEAD
 def destroy(arr)
   arr.each do |a|
     a.destroy
   end
 end
+=======
+create_languages
+>>>>>>> fbb5d4cf3ff51459288c0b3abaf17ffeaa97ce07
 
 get '/' do
 destroy(Language.all)
@@ -280,7 +284,7 @@ get '/teams/:id/join' do
   team = Team.find(params[:id].to_i)
   user = User.find(session[:id])
   user.teams.push(team)
-  redirect 'teams/:id'
+  redirect '/teams/'.concat(params[:id])
 end
 
 get '/search' do
@@ -314,7 +318,7 @@ end
 
 delete '/home/posts/:id' do
   post = Post.find(params[:id].to_i)
-  post.delete
+  post.destroy
   redirect '/home'
 end
 
@@ -364,7 +368,7 @@ patch '/teams/:id/edit' do
   logo = params[:logo_url]
   bio = params[:team_bio]
   Team.update({name: name, team_info: bio, logo: logo})
-  redirect '/teams/:id'
+  redirect '/teams/'.concat(params[:id])
 end
 
 get '/users/:id/edit' do
@@ -390,6 +394,15 @@ patch '/users/:id' do
   end
   @user.update({user_name: user_name, email: email, job_history: work, bio: bio, profile_picture: picture})
   redirect '/users/'.concat(current_user.id.to_s)
+end
+
+post '/comment' do
+  content = params[:content]
+  post_id = params[:post_id].to_i
+  current_user = params[:current_user].to_i
+  post = Post.find(post_id)
+  post.comments.create({user_id: current_user, post_id: post_id, content: content})
+  redirect '/home'
 end
 
 get '/clear' do
