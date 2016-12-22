@@ -276,6 +276,16 @@ post '/post_content' do
   redirect '/home'
 end
 
+delete '/home/posts/:id' do
+  post = Post.find(params[:id].to_i)
+  post.delete
+  redirect '/home'
+end
+
+# patch '/posts/:id' do
+#
+# end
+
 get '/users/:id' do
   @user = User.find(session[:id].to_i)
   # @following = User.find(params[:id].to_i)
@@ -284,10 +294,20 @@ get '/users/:id' do
   # redirect '/home'
 end
 
-# patch 'teams/:id' do
-#
-# end
-#
+get '/teams/:id/edit' do
+  @team = Team.find(params[:id].to_i)
+  erb :team_edit
+end
+
+patch '/teams/:id/edit' do
+  @team = Team.find(params[:id].to_i)
+  name = params[:team_name]
+  logo = params[:logo_url]
+  bio = params[:team_bio]
+  Team.update({name: name, team_info: bio, logo: logo})
+  redirect '/teams/:id'
+end
+
 # delete 'teams/:id' do
 #
 # end

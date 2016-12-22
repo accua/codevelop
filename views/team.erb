@@ -14,8 +14,10 @@
           <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>Location: <span>Portland, Oregon</span></p>
           <div class="card-action">
             <a id="top-team-button-margin" href="javascript:void(0)" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-user-plus" aria-hidden="true"></i>Follow</a>
-            <a href="javascript:void(0)" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-envelope" aria-hidden="true"></i>Message</a>
-              <a id="join-button-padding" href="/teams/<%= @team.id %>/join" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-envelope" aria-hidden="true"></i>Join</a>
+            <% if current_user.teams.include?(@team) %>
+              <a href="/teams/<%= @team.id %>/edit" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+            <% end %>
+              <a id="join-button-padding" href="/teams/<%= @team.id %>/join" class="btn btn-raised btn-sm btn-warning"><i class="fa fa-plus" aria-hidden="true"></i>Join</a>
           </div>
         </div>
       </div>

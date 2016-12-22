@@ -549,3 +549,7 @@ li {
   padding-left: 37px;
   padding-right: 37px;
 }
+
+.inline {
+  display: inline;
+}
