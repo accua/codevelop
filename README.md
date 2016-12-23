@@ -1,6 +1,6 @@
 # _CODEVELOP_
 
-#### By _**Andrew Accuard**, **Ryan Back**, **Matt Eichsteadt**, **Lucas Keysboe**,  12/22/2016_
+#### By _**Andrew Accuardi**, **Ryan Back**, **Matt Eichsteadt**, **Lucas Keysboe**,  12/22/2016_
 
 ## Description
 
@@ -18,7 +18,7 @@ _This is a brand new social networking tool that is coming to the web. Codevelop
 
 ## Setup/Installation Requirements
 
-* Heroku link goes here
+* You can check out our project [here](https://codevelop-project.herokuapp.com)
 
 
 ## Technologies Used
