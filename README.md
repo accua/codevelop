@@ -4,7 +4,7 @@
 
 ## Description
 
-_This is a brand new social networking tool that is coming to the web. Codevelop is a social networking tool for software engineers and developers alike. By using Codevelop, developers can find, follow, contact, and create teams with other users. This is not linkedin, while linkedin is a great way to connect business professionals, it does not allow for the creation of teams and the ability to collaborate. Upon creation of a profile, using github authentication, the user will have the ability to look at their repositories and others as well. There is an in-house messaging system along with the ability to read and write posts for you and your followers to see. Codevelop allows users to rate themselves on their individual language skills and find others who are using know what they do._
+_This is a brand new social networking tool that is coming to the web. Codevelop is a social networking tool for software engineers and developers alike. By using Codevelop, developers can find, follow, contact, and create teams with other users. This is not linkedin, while linkedin is a great way to connect business professionals, it does not allow for the creation of teams and the ability to collaborate. Upon creation of a profile, using github authentication, the user will have the ability to look at their repositories and others as well. There is an in-house messaging system along with the ability to read and write posts for you and your followers to see. Codevelop allows users to rate themselves on their individual language skills and find others who are using the same tools._
 
 
 **User Stories**
